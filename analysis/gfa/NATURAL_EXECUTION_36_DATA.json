@@ -1,0 +1,198 @@
+{
+  "phase": "P3-C",
+  "status": "INCOMPLETE_NATURAL_VALID_STATEMENT_NOT_DEMONSTRATED",
+  "question": "Can a naturally entered BASIC instruction be followed from input parser through dispatcher to its handler and visible result?",
+  "tooling": {
+    "hatari_version": "2.6.1",
+    "machine": "tt",
+    "trace_categories": ["os_base", "gemdos"],
+    "input_method": "GFA editor direct mode Shift-F9, followed by X11 keyboard events and Return",
+    "debugger_method": "Hatari command FIFO with one-shot PC breakpoints and savebin register-relative snapshots"
+  },
+  "rom": {
+    "path": "work/p3b/roms/tos306-tt-gb.img",
+    "version": "Atari TOS 3.06 TT",
+    "sha256": "974211d0f3db3d81af2d5c564df2e329fec48bb359a8b1eae9edacc9bbda7816"
+  },
+  "text_base": {
+    "absolute": "0xE904",
+    "basis": "Hatari breakpoint immediately after Pexec transferred control to the interpreter",
+    "e_and_d": "same observed value"
+  },
+  "binaries": {
+    "E": {
+      "path": "work/extracted/p2/gfa-3.6/GFABASIC.PRG",
+      "sha256": "d44ca139e6712fd26c14abdf1d4480120a137b70919e1b9ac1c7813a532b4c39",
+      "text_bytes": 102288,
+      "data_bytes": 36,
+      "bss_bytes": 1088,
+      "isolated_drive": "work/p3c/drive-e"
+    },
+    "D": {
+      "path": "work/extracted/p2/gfa-3.6tt/GFABASIC.PRG",
+      "sha256": "b7706b9f9789c7ac3a9e06ded26aab55521e0c2552d2c51348ee0b87779adf6e",
+      "text_bytes": 102460,
+      "data_bytes": 36,
+      "bss_bytes": 1088,
+      "isolated_drive": "work/p3c/drive-d"
+    }
+  },
+  "addresses": {
+    "text_offsets": {
+      "interactive_parser_entry": "0x12DF6",
+      "static_map_scanner_internal": "0x12EF6",
+      "static_token_map": "0x1111E",
+      "generated_workspace_map_1": "A6+0xD2C",
+      "generated_workspace_map_2": "A6+0x10CC",
+      "dispatcher_entry": "0x1BD6",
+      "indirect_jsr": "0x1BEC"
+    },
+    "absolute_addresses_at_text_base_E904": {
+      "interactive_parser_entry": "0x216FA",
+      "static_map_scanner_internal": "0x217FA",
+      "static_token_map": "0x1FA22",
+      "dispatcher_entry": "0x104DA",
+      "indirect_jsr": "0x104F0"
+    },
+    "interpretation": {
+      "0x12DF6": "entry called from the interactive prompt path",
+      "0x12EF6": "internal scanner point, not a second parser entry",
+      "evidence": "P3-A/P3-B static control-flow and references; this P3-C attempt dynamically stopped at 0x12DF6 only"
+    }
+  },
+  "attempted_input": {
+    "intended_text": "PRINT \"A\"",
+    "origin": "typed normally through the GFA direct-mode prompt; not loaded or debugger-injected",
+    "created_source_file": false,
+    "accepted_by_interpreter": false,
+    "actual_bytes_hex_ascii": "50 52 49 4E 54 20 33 41 33 0D",
+    "actual_ascii": "PRINT 3A3\\r",
+    "analysis": "inferred keyboard-layout mismatch: the French keyboard mapping produced digits instead of string delimiters",
+    "E": {
+      "parser_entry_hit": true,
+      "parser_registers": {
+        "A0": "0x2804A",
+        "A1": "0x28054",
+        "A6": "0x27CF8",
+        "A7": "0x2E1F4"
+      },
+      "visible_result": "Syntax Error",
+      "screenshot": "work/p3c/screenshots/e-natural-after-enter.png",
+      "memory_capture": {
+        "path": "work/p3c/traces/e-natural-parser-window.bin",
+        "sha256": "5bb40fe9df00d11b5c29d2d1b6ed879ad3d0804b4d3cf90c6572c2eecd1903a3"
+      },
+      "trace": {
+        "path": "work/p3c/traces/e-natural-final.trace",
+        "sha256": "7b70377f807f40dcc35a177530de6cdf7ca12a4bf537f29b7dd054342527e01f"
+      }
+    },
+    "D": {
+      "parser_entry_hit": true,
+      "parser_registers": {
+        "A0": "0x280F6",
+        "A1": "0x093A",
+        "A6": "0x27DA4",
+        "A7": "0x2E28E"
+      },
+      "visible_result": "Syntax Fehler",
+      "screenshot": "work/p3c/screenshots/d-natural-print-a-result.png",
+      "memory_capture": {
+        "path": "work/p3c/traces/d-natural-parser-a0.bin",
+        "sha256": "3546731983f23e4b87572c7feccc328587600b99712a9e97483363b7940c8c43"
+      },
+      "trace": {
+        "path": "work/p3c/traces/d-natural-final.trace",
+        "sha256": "137419e08f8180577ba5c3caa0156938c6688e04cabda3ebe7df057366207288"
+      }
+    }
+  },
+  "dispatcher": {
+    "D": {
+      "entry_hit": true,
+      "entry_absolute": "0x104DA",
+      "jsr_absolute": "0x104F0",
+      "jsr_opcode": "JSR (A0)",
+      "target_absolute_A0": "0x14608",
+      "target_text_relative_if_base_E904": "0x5D04",
+      "registers_at_entry": {
+        "A5": "0x282F6",
+        "D6": "0x46"
+      },
+      "registers_at_jsr": {
+        "A0": "0x14608",
+        "A5": "0x282FA",
+        "D6": "0x24C"
+      },
+      "association": "AMBIGUOUS: one-shot parser observation and subsequent direct-mode activity occurred in the same process; no valid BASIC statement was accepted",
+      "handler_semantics": "UNMEASURED"
+    },
+    "E": {
+      "entry_hit": false,
+      "classification": "UNMEASURED"
+    }
+  },
+  "table_accesses": {
+    "static_text_0x1111E": "UNMEASURED in the natural rejected-input path",
+    "workspace_A6_plus_0xD2C": "UNMEASURED in the natural rejected-input path",
+    "workspace_A6_plus_0x10CC": "UNMEASURED in the natural rejected-input path",
+    "background": "P3-B established synthetic/table-construction evidence only and found no proven generated-map-to-dispatch flow"
+  },
+  "coverage": {
+    "binaries_hash_verified": 2,
+    "rom_hash_verified": 1,
+    "parser_entry_hit": "2/2 attempted runs",
+    "same_actual_line_captured": "2/2 attempted runs",
+    "syntax_rejection_observed": "2/2 attempted runs",
+    "dispatcher_call_site_captured": "1/2 attempted runs; input association ambiguous",
+    "accepted_valid_basic_instructions": "0/2",
+    "expected_print_outputs_observed": "0/2",
+    "natural_generated_table_reads_confirmed": "0",
+    "natural_static_table_reads_confirmed": "0"
+  },
+  "proof_files": [
+    {
+      "path": "work/p3c/traces/d-natural-parser-a1.bin",
+      "sha256": "c97657ecb79c8136296dc41da4797cb924e081b8585f61b06048a9f02de43ee9"
+    },
+    {
+      "path": "work/p3c/traces/d-natural-parser-a6.bin",
+      "sha256": "47d65a403a703b66a0c96e881b986e85c5d099c3497175eb8a919d970c2bc5d9"
+    },
+    {
+      "path": "work/p3c/traces/d-natural-dispatch-a5.bin",
+      "sha256": "1acef5de999ac6a37c3959583759799508526b41fbccf2c781fc356f93233a31"
+    },
+    {
+      "path": "work/p3c/traces/d-natural-dispatch-frame.bin",
+      "sha256": "90dac4070c92371a3ec0fb41442555c3fd057af4e2f1acdd65dd0d1a7de60578"
+    },
+    {
+      "path": "work/p3c/screenshots/d-natural-print-a-result.png",
+      "sha256": "4d96e2ed8fd6156f1bb934027f8d953aeacbcd9e1f353026947766d0a7f3667c"
+    },
+    {
+      "path": "work/p3c/screenshots/e-natural-after-enter.png",
+      "sha256": "9e58e42f8e720ca47f9be73597683894c54631297875250fda0539aef9b231e5"
+    }
+  ],
+  "claims": {
+    "OBSERVED": [
+      "The interpreter reached TEXT offset 0x12DF6 in both runs.",
+      "The captured line bytes in both runs spelled PRINT 3A3 followed by CR.",
+      "Both interpreters showed localized syntax errors.",
+      "D executed JSR (A0) at absolute 0x104F0 with A0=0x14608 in one session."
+    ],
+    "INFERRED": [
+      "The X11 to guest keyboard layout mapping caused the intended quotes to become digits."
+    ],
+    "HYPOTHESIS": [
+      "The D indirect target belongs to the processing of a direct-mode command in the same session; exact command association is not established."
+    ],
+    "UNMEASURED": [
+      "Acceptance and execution of PRINT \"A\" or PRINT 1+2.",
+      "Natural access to static map 0x1111E or generated maps A6+0xD2C/A6+0x10CC.",
+      "E dispatcher target, handler semantics, and expected output."
+    ]
+  }
+}
