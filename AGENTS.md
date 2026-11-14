@@ -5,7 +5,7 @@
 ## Hard boundaries
 
 - NEVER invent a binary, tool output, machine address, routine name, emulator observation, or version label.
-- Keep original binary bytes, rg-dis generated listings, and third-party source in ignored `work/`, never commit or publish them without a documented rights review.
+- Keep original binary bytes, rg-dis generated listings, and third-party source in ignored `work/`, never commit or publish them without a documented rights review. Historical acquisitions use `tools/acquire.py` with tracked `artifacts/sources.json`; verify download URLs and SHA-256 before pinning.
 - Use pinned tool versions and SHA-256. Cite exact artifacts and locations in each claim.
 - Distinguish **OBSERVED**, **INFERRED**, **HYPOTHESIS**, and **UNMEASURED**.
 - Run experiments that could falsify the hypothesis; record failures as first-class evidence.

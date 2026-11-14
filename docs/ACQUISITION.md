@@ -1,25 +1,53 @@
-# Source acquisition and provenance
+# Historical material — acquisition and provenance
 
-## Inventory first
+## Principles
 
-For each language version, gather separately: interpreter/editor, compiler, run-only runtime, linked runtime libraries, manuals and examples. Some releases have separate localization or patches. **Do not infer a matching compiler exists from the interpreter version number.**
-
-For every file, record: source URL or physical medium, collector, date, version as displayed, filename, length, SHA-256, packaging/container, and a licensing/publication decision. Put proprietary originals under `work/originals/` (ignored).
+Keep proprietary originals and full disassemblies under ignored `work/`.
+Never infer a download endpoint from a catalog page, or pin an unverified hash.
+Record disk image hashes separately from hashes of extracted executables.
+Before publication, review the applicable rights: archive availability is not a license.
 
 ## Research starting points
 
-- Turbo-BASIC XL MADS disassembly and historical magazine sources: <https://www.atariwiki.org/wiki/Wiki.jsp?page=Turbo-BASIC+XL>
-- dmsc original project with reconstructed MADS interpreter: <https://github.com/dmsc/turbo-dis>
-- MADS 6502 cross-assembler and project list: <https://github.com/tebe6502/Mad-Assembler>
-- GFA 1.0 archival entry (commercial): <https://www.atarimania.com/games/atari-st-utilities-gfa-basic-38892>
-- GFA 2.02 / GFA 3.x archive catalog: <https://www.atariuptodate.de/en/progs/gfabasic>
-- rg-dis documentation: <https://rg.atari.org/tools/rg-dis/readme.html>
-- rg-dis release notes: <https://rg.atari.org/tools/rg-dis/release-notes.html>
+- Turbo-BASIC XL historical material: https://www.atariwiki.org/wiki/Wiki.jsp?page=Turbo-BASIC+XL
+- Turbo-BASIC XL reconstructed MADS listing: https://github.com/dmsc/turbo-dis
+- GFA 1.0 catalog: https://www.atarimania.com/games/atari-st-utilities-gfa-basic-38892
+- GFA BASIC catalogs and compilers: https://www.atariuptodate.de/en/progs/gfabasic
+- `rg-dis` manual: https://rg.atari.org/tools/rg-dis/readme.html
 
-These are **leads, not license grants**. Verify hashes, dates and whether materials can be redistributed. Default: keep commercial binary and derived full disassembly private.
+These URLs are research leads, not confirmed direct download links.
 
-## Extraction rule
+## Workflow
 
-`rg-dis` can inspect disk images and read archives, but `rg_batch.py` intentionally accepts **only extracted executable/object files**. First inspect `.ST` / `.MSA` / `.STX` via `rg-dis disk.st --inspect disk`, then extract the relevant `GFA*.PRG` / `*.TOS` file using a separate tool. The source disk is not equivalent to a single program.
+List known candidates:
 
-For Atari 8-bit TBXL, the MADS listing is a historical reverse-engineering reference. Do not run `rg-dis` over the TBXL 6502 object code; it would interpret it as 68000 and produce bogus output.
+```sh
+make sources
+```
+
+Acquire a verified direct HTTPS file, or import a disk image you obtained manually:
+
+```sh
+python3 tools/acquire.py fetch gfa-2.02-disk --url https://HOST/FILE.st --allow-unpinned
+python3 tools/acquire.py import gfa-1.0-disk --file /path/to/disk.st --allow-unpinned
+```
+
+Inspect the release, then pin the archive bytes in `artifacts/sources.json`:
+
+```sh
+python3 tools/acquire.py pin gfa-2.02-disk --file work/originals/gfa-2.02-disk/FILE.st
+python3 tools/acquire.py verify gfa-2.02-disk --file work/originals/gfa-2.02-disk/FILE.st
+git diff -- artifacts/sources.json
+```
+
+Paths and URLs in these examples are placeholders, not verified artifact locations.
+
+Every acquisition produces a JSON receipt with source, SHA-256, size, and date.
+Original bytes are not automatically extracted, executed, or committed.
+Download only when the source permits automated access; do not bypass authorization.
+
+## Execution
+
+`rg_batch.py` intentionally accepts extracted 68000 executables, not floppy images.
+Inspect/extract Atari ST `.ST`/`.MSA` images separately before disassembly.
+`rg-dis` is not a 6502 disassembler: use MADS and 6502 tools for Turbo-BASIC XL.

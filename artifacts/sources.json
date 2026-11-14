@@ -1,0 +1,116 @@
+{
+  "schema": 1,
+  "description": "Historical leads only; sources are not automatically licensed for redistribution. Direct download URLs and SHA-256 values must be verified before pinning.",
+  "artifacts": [
+    {
+      "id": "tbxl-1.5-interpreter",
+      "target": "tbxl-1.5",
+      "role": "interpreter",
+      "description": "Turbo-BASIC XL v1.5 Atari 8-bit original executable or floppy image",
+      "catalog_url": "https://www.atariwiki.org/wiki/Wiki.jsp?page=Turbo-BASIC+XL",
+      "url": null,
+      "sha256": null,
+      "notes": "6502. For reconstruction, separately inspect the upstream dmsc/turbo-dis MADS source."
+    },
+    {
+      "id": "tbxl-1.1-compiler",
+      "target": "tbxl-1.5",
+      "role": "compiler",
+      "description": "Turbo-BASIC XL compiler v1.1, exact release to verify",
+      "catalog_url": "https://www.atariwiki.org/wiki/Wiki.jsp?page=Turbo-BASIC+XL",
+      "url": null,
+      "sha256": null,
+      "notes": "Do not infer the compiler version from the interpreter image."
+    },
+    {
+      "id": "gfa-1.0-disk",
+      "target": "gfa-1.0",
+      "role": "distribution",
+      "description": "GFA BASIC 1.0 original Atari ST disk image (1985 GFA Systemtechnik edition)",
+      "catalog_url": "https://www.atarimania.com/games/atari-st-utilities-gfa-basic-38892",
+      "url": null,
+      "sha256": null,
+      "notes": "Commercial edition; inspect disk to identify interpreter and any additional tools."
+    },
+    {
+      "id": "gfa-2.02-disk",
+      "target": "gfa-2.02",
+      "role": "distribution",
+      "description": "GFA BASIC 2.02 Atari ST distribution disk image",
+      "catalog_url": "https://www.atariuptodate.de/en/progs/gfabasic",
+      "url": null,
+      "sha256": null,
+      "notes": "The precise disk-image release must be established; the catalog is not a direct binary URL."
+    },
+    {
+      "id": "gfa-2.0-runtime",
+      "target": "gfa-2.02",
+      "role": "runtime",
+      "description": "GFA BASIC 2 Run Only runtime (catalog describes version 2.0)",
+      "catalog_url": "https://www.atariuptodate.de/en/progs/gfabasic",
+      "url": null,
+      "sha256": null,
+      "notes": "Version labeling differs from the 2.02 interpreter; verify release separately."
+    },
+    {
+      "id": "gfa-3.02-interpreter",
+      "target": "gfa-3.02",
+      "role": "interpreter",
+      "description": "GFA BASIC 3.02 interpreter, exact edition and packaging to establish",
+      "catalog_url": "https://www.atariuptodate.de/en/progs/gfabasic",
+      "url": null,
+      "sha256": null,
+      "notes": "Catalog lead only; do not relabel GFA 3.0 or 3.03 as 3.02."
+    },
+    {
+      "id": "gfa-3.60-interpreter",
+      "target": "gfa-3.60",
+      "role": "interpreter",
+      "description": "GFA BASIC 3.60 interpreter, exact edition and packaging to establish",
+      "catalog_url": "https://www.atariuptodate.de/en/progs/gfabasic",
+      "url": null,
+      "sha256": null,
+      "notes": "Catalog lead only; 3.60 interpreter must not be conflated with 3.6TT or compiler 3.60."
+    },
+    {
+      "id": "gfa-3.6tt-disk",
+      "target": "gfa-3.6tt",
+      "role": "distribution",
+      "description": "GFA BASIC 3.6TT original Atari ST disk image",
+      "catalog_url": "https://www.atarimania.com/games/atari-st-utilities-gfa-basic-43829",
+      "url": null,
+      "sha256": null,
+      "notes": "Commercial edition; inspect disk contents before assigning interpreter/compiler roles."
+    },
+    {
+      "id": "gfa-3.60-compiler",
+      "target": "gfa-3.60",
+      "role": "compiler",
+      "description": "GFA-BASIC Compiler version 3.60",
+      "catalog_url": "https://www.atariuptodate.de/en/progs/gfabasic",
+      "url": null,
+      "sha256": null,
+      "notes": "Distinct artifact from interpreter and run-only runtime."
+    },
+    {
+      "id": "gfa-1.x-compiler",
+      "target": "gfa-1.0",
+      "role": "compiler",
+      "description": "GFA BASIC generation 1 compiler, existence/version to verify",
+      "catalog_url": "https://www.atarimania.com/games/atari-st-utilities-gfa-basic-38892",
+      "url": null,
+      "sha256": null,
+      "notes": "Inventory lead only; do not claim an independently distributed compiler exists."
+    },
+    {
+      "id": "gfa-2.x-compiler",
+      "target": "gfa-2.02",
+      "role": "compiler",
+      "description": "GFA BASIC generation 2 compiler, version and packaging to verify",
+      "catalog_url": "https://www.atariuptodate.de/en/progs/gfabasic",
+      "url": null,
+      "sha256": null,
+      "notes": "Inventory lead only; do not infer a compiler version from the interpreter."
+    }
+  ]
+}

@@ -22,6 +22,15 @@ STOS is deliberately not in the first phase; its future track can share the Atar
 
 **`work/` is ignored**: original commercial binaries, full machine-code listings, machine-generated artifacts, and logs stay local until provenance and publication rights have been assessed. The repository tracks reproducible commands, evidence indexes, and original analysis, not third-party code by default.
 
+## Historical artifacts: reproducible acquisition
+
+The tracked [`artifacts/sources.json`](artifacts/sources.json) contains research leads and SHA-256 pins; `tools/acquire.py` fetches direct HTTPS URLs or imports manually acquired files into ignored `work/originals/` with provenance receipts. Original binaries are not committed. See [`docs/ACQUISITION.md`](docs/ACQUISITION.md).
+
+```sh
+make sources
+python3 tools/acquire.py import gfa-1.0-disk --file /path/to/disk.st --allow-unpinned
+```
+
 ## Generate GFA evidence
 
 Install `rg-dis` from <https://rg.atari.org/tools/rg-dis/>. Record the exact release; v0.11.46 was current when this skeleton was prepared (2026-11-14). Put the *extracted 68000 executable* (`.PRG`, `.TOS`, `.APP`, etc.) in a directory of your choice, then:
