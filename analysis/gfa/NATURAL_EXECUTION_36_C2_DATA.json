@@ -1,0 +1,167 @@
+{
+  "phase": "P3-C2",
+  "parent_phase_status": "P3-C INCOMPLETE",
+  "status": "NATURAL_DIRECT_MODE_INPUT_AND_DISPATCH_OBSERVED_FOR_THREE_PRINT_CASES",
+  "environment": {
+    "hatari": "2.6.1",
+    "machine": "Atari TT",
+    "rom": {
+      "path": "work/p3b/roms/tos306-tt-gb.img",
+      "identified_version": "Atari TOS 3.06 TT, 1991-09-24, en-GB",
+      "sha256": "974211d0f3db3d81af2d5c564df2e329fec48bb359a8b1eae9edacc9bbda7816"
+    },
+    "text_base": {
+      "absolute": "0xE904",
+      "basis": "Hatari debugger observation after Pexec transferred control to the PRG",
+      "runs": "E and D"
+    },
+    "keyboard": {
+      "hatari_mode": "scancode",
+      "config_path": "tools/hatari_gfa_scancode.cfg",
+      "config_sha256": "758f98d8015eb8b1c37bfa86b458dcf421c784c97fb2aaffdb7deb69d9c79df0",
+      "host_observation": "setxkbmap -query reported us under Xwayland, while xmodmap keycode symbols and observed xdotool mappings were AZERTY; actual emitted keysyms/physical keycodes were used as the calibration authority",
+      "guest_observation": "ROM locale is en-GB; host X11 layout and guest TOS layout are distinct layers",
+      "key_events": {
+        "PRINT letters and space": "xdotool type 'PRINT '",
+        "quote": "xdotool key shift+eacute",
+        "uppercase A": "xdotool key shift+q",
+        "digit 1": "xdotool key ampersand",
+        "plus": "xdotool key plus",
+        "digit 2": "xdotool key eacute",
+        "Return": "xdotool key Return",
+        "old_negative_digit 3": "xdotool key quotedbl"
+      },
+      "calibration_failure": "xdotool type on the number row synthesized Shift and produced wrong guest symbols (including !+\" during the early arithmetic attempt); using keysyms corresponding to physical AZERTY positions fixed it"
+    },
+    "debugger": {
+      "input": "Hatari command FIFO",
+      "memory_operations": "read-only cpureg/savebin snapshots; no debugger writes to the parser buffer or guest memory",
+      "absolute_points": {
+        "parser_TEXT_12DF6": "0x216FA",
+        "scanner_TEXT_12EF6": "0x217FA",
+        "dispatcher_TEXT_1BD6": "0x104DA",
+        "indirect_JSR_TEXT_1BEC": "0x104F0"
+      }
+    }
+  },
+  "binaries": {
+    "E": {
+      "path": "work/extracted/p2/gfa-3.6/GFABASIC.PRG",
+      "sha256": "d44ca139e6712fd26c14abdf1d4480120a137b70919e1b9ac1c7813a532b4c39",
+      "text_bytes": 102288,
+      "data_bytes": 36,
+      "bss_bytes": 1088
+    },
+    "D": {
+      "path": "work/extracted/p2/gfa-3.6tt/GFABASIC.PRG",
+      "sha256": "b7706b9f9789c7ac3a9e06ded26aab55521e0c2552d2c51348ee0b87779adf6e",
+      "text_bytes": 102460,
+      "data_bytes": 36,
+      "bss_bytes": 1088
+    }
+  },
+  "experiments": [
+    {
+      "id": "print-empty",
+      "input_text": "PRINT",
+      "expected_line_hex": "50 52 49 4E 54 0D",
+      "accepted": {"E": true, "D": true},
+      "visible_result": {"E": "blank PRINT output followed by OK prompt", "D": "blank PRINT output followed by OK prompt"},
+      "scanner_12EF6_hit": {"E": false, "D": false},
+      "dispatch": {"E": "0x104DA -> JSR at 0x104F0 -> A0 0x14608", "D": "0x104DA -> JSR at 0x104F0 -> A0 0x14608"},
+      "parser_capture_sha256": "0ba02295efa2ac2293428b45b98b62d52ba409fbd5001a0daa2b0dc702853569",
+      "dispatch_frame_sha256": "9f8e624d36f914399c120e57ff3cfd140d7af9f71a6e8e7a5790b0e0829d5b00",
+      "target_frame_sha256": "4c0d554dbc59c8a0d63faee38f8c888a8f0afbfc077b2c440a7fa28faf635267",
+      "screenshots": {
+        "E": {"path": "work/p3c2/e-print-empty/screenshots/after-input.png", "sha256": "d6e55c14d7210f9f227e963288093a2f6e8a9ff6c7c63885439ad6d077eadc9d"},
+        "D": {"path": "work/p3c2/d-print-empty/screenshots/after-input.png", "sha256": "f1cf30ec822b8fdf39e87551d488cabe8bbde33145603af5d82dade4ffeadae9"}
+      }
+    },
+    {
+      "id": "print-string-a",
+      "input_text": "PRINT \"A\"",
+      "expected_line_hex": "50 52 49 4E 54 20 22 41 22 0D",
+      "accepted": {"E": true, "D": true},
+      "visible_result": {"E": "A", "D": "A"},
+      "scanner_12EF6_hit": {"E": false, "D": false},
+      "dispatch": {"E": "0x104DA -> JSR at 0x104F0 -> A0 0x14608", "D": "0x104DA -> JSR at 0x104F0 -> A0 0x14608"},
+      "dispatcher_registers_at_entry": {
+        "E": {"A5": "0x2824A", "D6": "0x46"},
+        "D": {"A5": "0x282F6", "D6": "0x46"}
+      },
+      "registers_at_indirect_call": {
+        "E": {"A5": "0x2824E", "D6": "0x24C", "A0": "0x14608"},
+        "D": {"A5": "0x282FA", "D6": "0x24C", "A0": "0x14608"}
+      },
+      "frame_bytes_at_dispatch_entry": "00 08 02 4C DE 01 41 46 00 04 00 B8 ...",
+      "selected_vector": {
+        "TEXT_offset": "0x1E48",
+        "runtime_absolute": "0x1074C",
+        "runtime_bytes": "00 01 46 08",
+        "interpretation": "relocated absolute pointer 0x00014608",
+        "capture_sha256": "33e3b3dc4cd4b04921624bbb6ae08e82b2c82399d52e05c33fdf70a42d27ccd0"
+      },
+      "parser_capture_sha256": "6a1c27e3dd248ea7e82959e6ca4f6fe0d6a2c937d31fde24091dd503db0db5c6",
+      "dispatch_frame_sha256": "69cee0669acefbe78b43063116155c7d749e799a4df2276926aecfe11851ee48",
+      "target_frame_sha256": "16decc2e0f4bf6b8d40ff7797727f53fb83f23d4c98e727a4d979e2172cc7763",
+      "screenshots": {
+        "E": {"path": "work/p3c2/e-print-a/screenshots/after-input.png", "sha256": "df5166d0d3f2454d80f6c51de94f3de96a1e44951fe6a673ce49e3d8d3daf77b"},
+        "D": {"path": "work/p3c2/d-print-a/screenshots/after-input.png", "sha256": "febdf0fc3125e477b9381d6a092e8a250bea9e62c1bbd89a011309a150f02dfb"}
+      }
+    },
+    {
+      "id": "print-1-plus-2",
+      "input_text": "PRINT 1+2",
+      "expected_line_hex": "50 52 49 4E 54 20 31 2B 32 0D",
+      "accepted": {"E": true, "D": true},
+      "visible_result": {"E": "3", "D": "3"},
+      "scanner_12EF6_hit": {"E": false, "D": false},
+      "dispatch": {"E": "0x104DA -> JSR at 0x104F0 -> A0 0x14608", "D": "0x104DA -> JSR at 0x104F0 -> A0 0x14608"},
+      "registers_at_indirect_call": {
+        "E": {"D6": "0x24C", "A0": "0x14608"},
+        "D": {"D6": "0x24C", "A0": "0x14608"}
+      },
+      "parser_capture_sha256": "cc1285cdbe648388661a55479a1f86c4248ba8f8f399c70f5ad2a09b2db680d4",
+      "dispatch_frame_sha256": "6c93d5a410e21bd917a32ec95d6027eb557aa8cc6950aa4a5d50b2c7c8b0dbaf",
+      "target_frame_sha256": "c225eec1a89986cf8357cda5dc6e04e5f14e8ab7a0d18082cd57b7d1c7a16272",
+      "screenshots": {
+        "E": {"path": "work/p3c2/e-print-1plus2/screenshots/after-input.png", "sha256": "460e52779f33f3d653d8d965f931b6552ea8fe97eb6f9a5ec5653a2027cd5514"},
+        "D": {"path": "work/p3c2/d-print-1plus2/screenshots/after-input.png", "sha256": "54d1a42632130e8b86d7afda54ad546401f91c3950c1ea2ec8e9c60b2bfe91a9"}
+      }
+    },
+    {
+      "id": "old-negative-print-3a3",
+      "input_text": "PRINT 3A3",
+      "actual_line_hex": "50 52 49 4E 54 20 33 41 33 0D",
+      "accepted": {"E": false, "D": false},
+      "visible_result": {"E": "Syntax Error", "D": "Syntax Fehler"},
+      "parser_capture_sha256": "f1b580714adb0cf42e07b1131b330e5147b6eacd6e0410f7144dbb53e1a100a1",
+      "dispatch_observed": false
+    },
+    {
+      "id": "wrong-quote-key",
+      "intended_text": "PRINT \"A\"",
+      "deliberate_event_change": "shift+quotedbl used instead of shift+eacute for guest quote",
+      "actual_line_hex": "50 52 49 4E 54 20 9C 41 9C 0D",
+      "accepted": {"D": false},
+      "parser_capture_sha256": "84f4ad3a07d3dd350fccde62679417d42f6b2a78690d66354c4473a8daad08db",
+      "screenshot": {"path": "work/p3c2/d-wrong-quote-key/screenshots/after-input.png", "sha256": "246deb79a6bcc2d3676af8860e7d55dfb9c73c83a75311d1bbcdade9f3cdb913"}
+    }
+  ],
+  "conclusions": {
+    "natural_input": "The three valid lines were entered by keyboard in GFA direct mode, reached parser TEXT 0x12DF6, and were captured byte-exactly; no debugger writes fabricated those buffers.",
+    "dispatcher": "All three valid cases in both builds hit TEXT 0x1BD6 and call site TEXT 0x1BEC; the vector at TEXT 0x1E48 resolves to runtime A0 0x14608 for PRINT \"A\" in both builds.",
+    "scanner": "The internal point TEXT 0x12EF6 was armed but not reached by these direct-mode PRINT cases.",
+    "tables": "No watchpoint established natural access to static TEXT 0x1111E or generated A6-relative maps A6+0xD2C and A6+0x10CC in these cases.",
+    "equivalence_scope": "E and D matched the observed input bytes, dispatch index/vector, selected runtime target and visible result for each of the three cases; this does not establish general language equivalence.",
+    "behavioral_identity": "The target is associated with the valid PRINT cases by the captured natural control flow and output, but no independent semantic label is assigned to routine TEXT 0x5D04 / runtime 0x14608 beyond that evidence."
+  },
+  "raw_evidence_root": "work/p3c2/",
+  "limitations": [
+    "Input/output screenshots are visual records; no framebuffer OCR is used as primary evidence.",
+    "No source fixture was loaded or saved; these were direct-mode keyboard statements.",
+    "No debugger writes to guest RAM were issued; savebin and cpureg are read-only evidence collection.",
+    "The operand/scanner path at 0x12EF6 and natural reads of the three P3-B tables remain unmeasured.",
+    "P3-C as a whole remains incomplete; only the P3-C2 direct-mode cases are closed."
+  ]
+}
