@@ -1,0 +1,9 @@
+# Do not commit proprietary historical binaries or disassemblies blindly.
+/work/
+/originals/
+/generated/
+/vendor/
+*.pyc
+__pycache__/
+.pytest_cache/
+.DS_Store
