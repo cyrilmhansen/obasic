@@ -1,0 +1,732 @@
+{
+  "schema": "obasic.gfa36.token-tables.v1",
+  "scope": {
+    "question": "What are the two tables built at TEXT:$1569E and do they feed BASIC token decoding or another consumer?",
+    "boundary": "The analysis follows selected table consumers and one dispatcher vector entry only; no handler bodies or full parser reconstruction."
+  },
+  "tools": {
+    "rg_dis": "0.11.46",
+    "rg_dis_sha256": "1a66448a2a3215ded9e89515f3e0c5fbb02e7d05ec9e8bc175dda492734bc4ef",
+    "independent_decoder": "m68k-atari-mint-objdump GNU Binutils 2.30 (MiNT 20180703)",
+    "hatari": "2.6.1",
+    "python": "3.14.8",
+    "hatari_sha256": "98d3879baf70b6e140071994ebebd791b148f72b9115c1dc512865123d0faa77"
+  },
+  "executables": {
+    "E": {
+      "path": "work/extracted/p2/gfa-3.6/GFABASIC.PRG",
+      "prg_bytes": 104597,
+      "prg_sha256": "d44ca139e6712fd26c14abdf1d4480120a137b70919e1b9ac1c7813a532b4c39",
+      "text_bytes": 102288,
+      "text_sha256": "eca3937ae580e987852a974836b163796fdb66a8e0bfde3f849d5f4c02402730",
+      "table_report": {
+        "prg_bytes": 104597,
+        "prg_sha256": "d44ca139e6712fd26c14abdf1d4480120a137b70919e1b9ac1c7813a532b4c39",
+        "text_bytes": 102288,
+        "text_sha256": "eca3937ae580e987852a974836b163796fdb66a8e0bfde3f849d5f4c02402730",
+        "table_workspace": {
+          "character_base": 3372,
+          "character_capacity_words": 464,
+          "character_key_slots_observed": [
+            0,
+            463
+          ],
+          "token_base": 4300,
+          "token_capacity_words": 512,
+          "token_key_byte_offsets_observed": [
+            0,
+            904
+          ],
+          "combined_base": 3372,
+          "combined_words": 976,
+          "combined_bytes": 1952,
+          "contiguous": true,
+          "word_before_character_table_workspace_offset": 3370,
+          "first_token_fill_source_workspace_offset": 4298
+        },
+        "character_map": {
+          "text_start": 73435,
+          "text_end_inclusive": 76984,
+          "source_bytes_including_terminator": 3550,
+          "record_count": 404,
+          "unique_keys": 397,
+          "duplicate_key_records": 7,
+          "max_prefix_length": 16,
+          "sha256_with_terminator": "20cd4b03c5e0052adf042b911c1e0c0bcbed7129406ff1263fed9ab094df76bf"
+        },
+        "token_map": {
+          "text_start": 69918,
+          "text_end_inclusive": 73434,
+          "source_bytes_including_terminator": 3517,
+          "record_count": 322,
+          "unique_keys": 299,
+          "duplicate_key_records": 23,
+          "max_prefix_length": 20,
+          "sha256_with_terminator": "053c2e77fd1d855c49697e705e162dd257fbbf2f5de9a0a6b663f525dcdd3011"
+        },
+        "generated": {
+          "character_table_sha256_be_words": "3a36bc1a2030ec895afd6a0bb6154bb395943692b35766c57f6d591c7216e593",
+          "token_table_sha256_be_words": "4e18a638ed9bdd045708a28a92c86241cdedf24e36b12608c73cf59b56bf082a",
+          "combined_sha256_be_words": "e273593ff6b9e36429c387019b238abcf270408e5070e25671c7e9f88e32e702",
+          "initial_word_before_character_map": 0,
+          "manual_zero_token_slots": [
+            60,
+            63,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83,
+            84,
+            85,
+            86,
+            87
+          ]
+        }
+      }
+    },
+    "D": {
+      "path": "work/extracted/p2/gfa-3.6tt/GFABASIC.PRG",
+      "prg_bytes": 104770,
+      "prg_sha256": "b7706b9f9789c7ac3a9e06ded26aab55521e0c2552d2c51348ee0b87779adf6e",
+      "text_bytes": 102460,
+      "text_sha256": "c6782181b208b4f2b86409b6b0c1cb72bd0d30e20f32b9cc190ab64f72dd1fb0",
+      "table_report": {
+        "prg_bytes": 104770,
+        "prg_sha256": "b7706b9f9789c7ac3a9e06ded26aab55521e0c2552d2c51348ee0b87779adf6e",
+        "text_bytes": 102460,
+        "text_sha256": "c6782181b208b4f2b86409b6b0c1cb72bd0d30e20f32b9cc190ab64f72dd1fb0",
+        "table_workspace": {
+          "character_base": 3372,
+          "character_capacity_words": 464,
+          "character_key_slots_observed": [
+            0,
+            463
+          ],
+          "token_base": 4300,
+          "token_capacity_words": 512,
+          "token_key_byte_offsets_observed": [
+            0,
+            904
+          ],
+          "combined_base": 3372,
+          "combined_words": 976,
+          "combined_bytes": 1952,
+          "contiguous": true,
+          "word_before_character_table_workspace_offset": 3370,
+          "first_token_fill_source_workspace_offset": 4298
+        },
+        "character_map": {
+          "text_start": 73435,
+          "text_end_inclusive": 76984,
+          "source_bytes_including_terminator": 3550,
+          "record_count": 404,
+          "unique_keys": 397,
+          "duplicate_key_records": 7,
+          "max_prefix_length": 16,
+          "sha256_with_terminator": "20cd4b03c5e0052adf042b911c1e0c0bcbed7129406ff1263fed9ab094df76bf"
+        },
+        "token_map": {
+          "text_start": 69918,
+          "text_end_inclusive": 73434,
+          "source_bytes_including_terminator": 3517,
+          "record_count": 322,
+          "unique_keys": 299,
+          "duplicate_key_records": 23,
+          "max_prefix_length": 20,
+          "sha256_with_terminator": "053c2e77fd1d855c49697e705e162dd257fbbf2f5de9a0a6b663f525dcdd3011"
+        },
+        "generated": {
+          "character_table_sha256_be_words": "3a36bc1a2030ec895afd6a0bb6154bb395943692b35766c57f6d591c7216e593",
+          "token_table_sha256_be_words": "4e18a638ed9bdd045708a28a92c86241cdedf24e36b12608c73cf59b56bf082a",
+          "combined_sha256_be_words": "e273593ff6b9e36429c387019b238abcf270408e5070e25671c7e9f88e32e702",
+          "initial_word_before_character_map": 0,
+          "manual_zero_token_slots": [
+            60,
+            63,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83,
+            84,
+            85,
+            86,
+            87
+          ]
+        }
+      }
+    }
+  },
+  "static_tables": {
+    "builder_text_range": "0x1569e..0x1574e inclusive; RTS at 0x1574e",
+    "workspace": {
+      "character_base": "A6+0xD2C",
+      "character_words": 464,
+      "token_base": "A6+0x10CC",
+      "token_words": 512,
+      "combined_words": 976,
+      "combined_bytes": 1952,
+      "contiguous": true,
+      "preceding_character_word": "A6+0xD2A, cleared by startup path",
+      "token_slot_zero_predecessor": "A6+0x10CA, the last character-table word"
+    },
+    "source_maps": {
+      "token": {
+        "text_range_inclusive": "0x1111E..0x11EDA",
+        "bytes": 3517,
+        "records": 322,
+        "unique_keys": 299,
+        "duplicate_records": 23,
+        "key_storage": "big-endian uint16 byte offset; even values only",
+        "sha256_with_sentinel": "053c2e77fd1d855c49697e705e162dd257fbbf2f5de9a0a6b663f525dcdd3011"
+      },
+      "character": {
+        "text_range_inclusive": "0x11EDB..0x12CB8",
+        "bytes": 3550,
+        "records": 404,
+        "unique_keys": 397,
+        "duplicate_records": 7,
+        "key_storage": "byte key; add 0xE0 when discriminator byte is nonzero",
+        "sha256_with_sentinel": "20cd4b03c5e0052adf042b911c1e0c0bcbed7129406ff1263fed9ab094df76bf"
+      },
+      "gap_after_maps": "TEXT:$12CB9 (one byte); strings base TEXT:$12CBA"
+    },
+    "generation": {
+      "character_record_stride": "4 + prefix byte",
+      "token_record_stride": "6 + prefix byte",
+      "terminator": "first record length byte with bit 7 set",
+      "stored_value": "low 16 bits of record TEXT offset minus TEXT:$12CBA",
+      "duplicate_policy": "last source record store wins",
+      "empty_slots": "forward-fill prior word in each table",
+      "special_token_slots_zero": [
+        "0x3C",
+        "0x3F",
+        "0x4C..0x57"
+      ],
+      "generated_sha256_be_words": "e273593ff6b9e36429c387019b238abcf270408e5070e25671c7e9f88e32e702"
+    },
+    "e_d_ranges": [
+      {
+        "id": "builder",
+        "e": {
+          "start": "0x1569e",
+          "end_exclusive": "0x1574f",
+          "bytes": 177,
+          "sha256": "4a60783eec399cc68b9b78dad4210341a685fc9e3199065508118e2cea57b354"
+        },
+        "d": {
+          "start": "0x1569e",
+          "end_exclusive": "0x1574f",
+          "bytes": 177,
+          "sha256": "4a60783eec399cc68b9b78dad4210341a685fc9e3199065508118e2cea57b354"
+        },
+        "exact": true
+      },
+      {
+        "id": "token_lookup_and_first_text_byte",
+        "e": {
+          "start": "0x15276",
+          "end_exclusive": "0x152aa",
+          "bytes": 52,
+          "sha256": "a72f5d5cb86c94d4ab2c60b8f6ee050ef99ef795e9682b1a1d86741fe13386fa"
+        },
+        "d": {
+          "start": "0x15276",
+          "end_exclusive": "0x152aa",
+          "bytes": 52,
+          "sha256": "a72f5d5cb86c94d4ab2c60b8f6ee050ef99ef795e9682b1a1d86741fe13386fa"
+        },
+        "exact": true
+      },
+      {
+        "id": "character_lookup",
+        "e": {
+          "start": "0x15416",
+          "end_exclusive": "0x15422",
+          "bytes": 12,
+          "sha256": "456f86514958607ead18aef59b94bf180733d15505c4f7043b25f123fccd47ac"
+        },
+        "d": {
+          "start": "0x15416",
+          "end_exclusive": "0x15422",
+          "bytes": 12,
+          "sha256": "456f86514958607ead18aef59b94bf180733d15505c4f7043b25f123fccd47ac"
+        },
+        "exact": true
+      },
+      {
+        "id": "extended_character_lookup",
+        "e": {
+          "start": "0x158d0",
+          "end_exclusive": "0x158e9",
+          "bytes": 25,
+          "sha256": "06cf7e540b5645bc9d873a9948168407ae89dc1c6ce29bcb8700980756b12550"
+        },
+        "d": {
+          "start": "0x158d0",
+          "end_exclusive": "0x158e9",
+          "bytes": 25,
+          "sha256": "06cf7e540b5645bc9d873a9948168407ae89dc1c6ce29bcb8700980756b12550"
+        },
+        "exact": true
+      }
+    ],
+    "e_d_source_maps_identical": true,
+    "e_d_generated_tables_identical": true
+  },
+  "consumers": [
+    {
+      "id": "text_token_map_reader",
+      "text_range": "0x15276..0x152AA",
+      "instructions": [
+        "0x15282 loads 16-bit input token word",
+        "0x1528E shifts right one; resulting byte offset is used by word-indexed table",
+        "0x15296 reads A6+0x10CC + byte offset",
+        "0x152A2 adds signed word to TEXT:$12CBA to get static record"
+      ],
+      "role": "INFERRED text/listing renderer lookup; dynamic result selects token text record; not established as parser input decoding",
+      "confidence": "high for operations and table relation; medium for renderer purpose"
+    },
+    {
+      "id": "character_text_map_reader",
+      "text_range": "0x15416..0x1542C",
+      "instructions": [
+        "doubles decoded character byte",
+        "reads word from A6+0xD2C",
+        "adds signed pointer to TEXT:$12CBA",
+        "copies variable-length record to output"
+      ],
+      "role": "INFERRED character/text spelling conversion used by renderer",
+      "confidence": "high for dataflow; medium for semantic label"
+    },
+    {
+      "id": "extended_character_reader",
+      "text_range": "0x158D0..0x158F8",
+      "instructions": [
+        "reads following byte",
+        "adds 0xE0 then doubles for table byte offset",
+        "reads character table and resolves relative record"
+      ],
+      "role": "INFERRED extended-character spelling conversion",
+      "confidence": "high for operations; medium for label"
+    },
+    {
+      "id": "parser_static_map",
+      "text_range": "0x12EF6..0x12F24",
+      "observed": "LEA TEXT:$1111E into A2, then record-by-record comparisons against input; this parser path directly reads the static table, not workspace A6+0x10CC",
+      "classification": "OBSERVED code reference; further parser semantics out of scope"
+    },
+    {
+      "id": "handler_dispatcher",
+      "text_range": "0x1BD6..0x1BEC",
+      "observed": "separate A5 frame supplies an advance word and D6; indexed PC-relative longword selects A0; JSR (A0)",
+      "classification": "independent dispatch mechanism; no dataflow from generated token/character tables established"
+    }
+  ],
+  "dynamic": {
+    "classification": "ATARI_TOS via Hatari; not EMUTOS",
+    "environment": {
+      "hatari": "2.6.1",
+      "machine": "TT",
+      "tos_image": "work/p3b/roms/tos306-tt-gb.img",
+      "tos_sha256": "974211d0f3db3d81af2d5c564df2e329fec48bb359a8b1eae9edacc9bbda7816",
+      "vbl_limit": 700,
+      "SDL_VIDEODRIVER": "dummy",
+      "each variant": "separate GEMDOS hard-drive copy; same emulator, machine, ROM, options, and debugger scenario"
+    },
+    "builder_return_breakpoint": "TEXT:$1918 (after six-byte JSR at $1912), both versions",
+    "tables_after_builder": {
+      "D": {
+        "A6": "0x27DA4",
+        "table": "0x28AD0"
+      },
+      "E": {
+        "A6": "0x27CF8",
+        "table": "0x28A24"
+      },
+      "bytes_each": 1952,
+      "static_rebuild_sha256": "e273593ff6b9e36429c387019b238abcf270408e5070e25671c7e9f88e32e702",
+      "E_equals_D": true,
+      "runtime_addresses_differ_due_to_workspace_base": "0xAC; offsets from A6 match"
+    },
+    "token_reader_fixture": {
+      "synthetic_token_word": "0x01CC",
+      "renderer_D0_after_shift": "0x00E6",
+      "map_word": "0xE478",
+      "static_record_TEXT": "0x11132",
+      "static_record_prefix": "0x00 (one following text byte)",
+      "runtime_record_pointer": "0x1FA36 = TEXT base 0xE904 + 0x11132",
+      "output_prefix_hex": "27 20 41 0D 0A",
+      "qualifier": "controlled direct call into renderer with CR-terminated synthetic input; not a natural BASIC program run"
+    },
+    "character_reader_fixture": {
+      "synthetic_token_word": "0x0160",
+      "renderer_token_map_key_byte_offset": "0x00B0",
+      "token_record_TEXT": "0x1185B",
+      "token_record_ascii": "PLOT",
+      "character_byte": "0x41 (A)",
+      "table_access_byte_offset": "0x82",
+      "word_slot": "0x41 (65)",
+      "loaded_relative_pointer": "0xF310",
+      "character_record_TEXT": "0x11FCA",
+      "record_prefix_ascii": "ASIN(",
+      "qualifier": "controlled direct renderer call; debugger captured the word after the table load at TEXT:$15420"
+    },
+    "dispatcher_fixture": {
+      "entry": "TEXT:$1BD6",
+      "D6": "0",
+      "JSR_PC": "TEXT:$1BEC",
+      "runtime_target": "0x16F9E",
+      "TEXT_base": "0xE904",
+      "target_TEXT": "0x869A",
+      "vector_slot": "first of 26 longword entries at TEXT:$1BF8",
+      "qualifier": "synthetic A5 frame; target resolved, handler body not executed; not observed as natural startup flow"
+    },
+    "trace_artifacts": [
+      {
+        "version": "D",
+        "observation": "after_builder",
+        "path": "work/p3b/traces/d-after_tables.bin",
+        "bytes": 1952,
+        "sha256": "e273593ff6b9e36429c387019b238abcf270408e5070e25671c7e9f88e32e702"
+      },
+      {
+        "version": "D",
+        "observation": "first_token_table_read",
+        "path": "work/p3b/traces/d-first-token-read.bin",
+        "bytes": 1952,
+        "sha256": "e273593ff6b9e36429c387019b238abcf270408e5070e25671c7e9f88e32e702"
+      },
+      {
+        "version": "D",
+        "observation": "first_character_table_read",
+        "path": "work/p3b/traces/d-char-first-character-read.bin",
+        "bytes": 1952,
+        "sha256": "e273593ff6b9e36429c387019b238abcf270408e5070e25671c7e9f88e32e702"
+      },
+      {
+        "version": "D",
+        "observation": "after_character_lookup_instruction",
+        "path": "work/p3b/traces/d-char-post-character-table.bin",
+        "bytes": 1952,
+        "sha256": "e273593ff6b9e36429c387019b238abcf270408e5070e25671c7e9f88e32e702"
+      },
+      {
+        "version": "D",
+        "observation": "token_render_output",
+        "path": "work/p3b/traces/d-render-output.bin",
+        "bytes": 64,
+        "sha256": "79832724d4f4c57e66735025c40352ee8d469f766a31817ff3670f0c30003ac4"
+      },
+      {
+        "version": "D",
+        "observation": "token_capture_stdout",
+        "path": "work/p3b/traces/d-dynamic-terminated.stdout",
+        "bytes": 15100,
+        "sha256": "fe2c4872aecc049e1552057fdda4b92a2db541f0306efdc682c187cfbc1c2445"
+      },
+      {
+        "version": "D",
+        "observation": "token_capture_trace",
+        "path": "work/p3b/traces/d-dynamic-terminated.trace",
+        "bytes": 1595,
+        "sha256": "bc8bcd12ed09ddc7db7b67a86d6758d41a40fc2d15f8b81b9121051586325dbf"
+      },
+      {
+        "version": "D",
+        "observation": "character_capture_stdout",
+        "path": "work/p3b/traces/d-char-render.stdout",
+        "bytes": 19388,
+        "sha256": "36f911c14241e8074a902bb448f6bc56f22cf31ff6ad10f4db58f3b71a7dcd5e"
+      },
+      {
+        "version": "D",
+        "observation": "character_capture_trace",
+        "path": "work/p3b/traces/d-char-render.trace",
+        "bytes": 5747,
+        "sha256": "f5c17b10d845fed62b1e44f35ef0bfe2931bd11284872c5b91adea751293c96f"
+      },
+      {
+        "version": "E",
+        "observation": "after_builder",
+        "path": "work/p3b/traces/e-after_tables.bin",
+        "bytes": 1952,
+        "sha256": "e273593ff6b9e36429c387019b238abcf270408e5070e25671c7e9f88e32e702"
+      },
+      {
+        "version": "E",
+        "observation": "first_token_table_read",
+        "path": "work/p3b/traces/e-first-token-read.bin",
+        "bytes": 1952,
+        "sha256": "e273593ff6b9e36429c387019b238abcf270408e5070e25671c7e9f88e32e702"
+      },
+      {
+        "version": "E",
+        "observation": "first_character_table_read",
+        "path": "work/p3b/traces/e-char-first-character-read.bin",
+        "bytes": 1952,
+        "sha256": "e273593ff6b9e36429c387019b238abcf270408e5070e25671c7e9f88e32e702"
+      },
+      {
+        "version": "E",
+        "observation": "after_character_lookup_instruction",
+        "path": "work/p3b/traces/e-char-post-character-table.bin",
+        "bytes": 1952,
+        "sha256": "e273593ff6b9e36429c387019b238abcf270408e5070e25671c7e9f88e32e702"
+      },
+      {
+        "version": "E",
+        "observation": "token_render_output",
+        "path": "work/p3b/traces/e-render-output.bin",
+        "bytes": 64,
+        "sha256": "79832724d4f4c57e66735025c40352ee8d469f766a31817ff3670f0c30003ac4"
+      },
+      {
+        "version": "E",
+        "observation": "token_capture_stdout",
+        "path": "work/p3b/traces/e-dynamic-terminated.stdout",
+        "bytes": 15100,
+        "sha256": "ccdc3f026efe30f78c57a7649c17e7fcae6e61ea993db9ff53b2e99e1ed417cd"
+      },
+      {
+        "version": "E",
+        "observation": "token_capture_trace",
+        "path": "work/p3b/traces/e-dynamic-terminated.trace",
+        "bytes": 1595,
+        "sha256": "4479014adde48c809742b8162f873bb9c3c2806f059a260d2017eb1c7250956d"
+      },
+      {
+        "version": "E",
+        "observation": "character_capture_stdout",
+        "path": "work/p3b/traces/e-char-render.stdout",
+        "bytes": 19398,
+        "sha256": "752c326c753f0fc0752148cdf19ea65f5351ddc2954090707c69e2566677f093"
+      },
+      {
+        "version": "E",
+        "observation": "character_capture_trace",
+        "path": "work/p3b/traces/e-char-render.trace",
+        "bytes": 5747,
+        "sha256": "30a12f2ffa1d8d2e7a002e97d31197f59afd95bf48005b15900c10889212abcc"
+      }
+    ],
+    "invalid_fixture_falsification": "An initial renderer fixture omitted CR. The routine read past the six-byte synthetic input and workspace changed before dispatcher capture. After adding the CR, E and D table snapshots stayed byte-identical through the token and character lookups. The malformed-run output is retained under work/p3b and excluded from equivalence claims."
+  },
+  "rom_inventory": {
+    "emutos_local": "not found in searched local system/project ROM locations; no ROM downloaded",
+    "images": [
+      {
+        "version": "TOS 1.04 Mega ST FR",
+        "archive": "work/originals/tos-1.04-mega-st-fr/tos-1.04-mega-st-fr.zip",
+        "archive_sha256": "f607da31a96c2f30082fd8fb484472aa9d510dc8183abe2975717b0a98d69538",
+        "image": "work/p3b/roms/tos104-megast-fr.img",
+        "machine": "megast",
+        "image_bytes": 196608,
+        "image_sha256": "f36d3e22a86fb195bfba25220957bdf8983a0332d8c7ac368d7f6b9e044f283f",
+        "hatari_probe": "exit 0 with --run-vbls 2 under listed machine profile",
+        "archive_bytes": 108146
+      },
+      {
+        "version": "TOS 1.06 STE FR",
+        "archive": "work/originals/tos-1.06-ste-fr/tos-1.06-ste-fr.zip",
+        "archive_sha256": "9b72b2f7389e33566dfadd07e406f68094855a3d0b039af031f61ba6dc78c1bf",
+        "image": "work/p3b/roms/tos106-ste-fr.img",
+        "machine": "ste",
+        "image_bytes": 262144,
+        "image_sha256": "f68acec7151e682b1fb1fe8e8fafb3b0a9473a43bcc1638c537b29ae7812c57a",
+        "hatari_probe": "exit 0 with --run-vbls 2 under listed machine profile",
+        "archive_bytes": 109712
+      },
+      {
+        "version": "TOS 1.62 STE FR",
+        "archive": "work/originals/tos-1.62-ste-fr/tos-1.62-ste-fr.zip",
+        "archive_sha256": "956be04e269c6941cc9cba98b79af063759ee5b54ffd0e79dcf542e985c21e1d",
+        "image": "work/p3b/roms/tos162-ste-fr.img",
+        "machine": "ste",
+        "image_bytes": 262145,
+        "image_sha256": "fbd2e3edba4b04e56e11c192aae2a26d0590bde7321617bf9902bda11aa25caf",
+        "hatari_probe": "exit 0 with --run-vbls 2 under listed machine profile",
+        "archive_bytes": 109868
+      },
+      {
+        "version": "TOS 3.06 TT GB",
+        "archive": "work/originals/tos-3.06-tt-gb/TOS v3.06 (1991)(Atari Corp)(TT)(GB).zip",
+        "archive_sha256": "9c7c36e00242c7ac210554ed84044b32a54ac393c4302525305a3b633fada930",
+        "image": "work/p3b/roms/tos306-tt-gb.img",
+        "machine": "tt",
+        "image_bytes": 524288,
+        "image_sha256": "974211d0f3db3d81af2d5c564df2e329fec48bb359a8b1eae9edacc9bbda7816",
+        "hatari_probe": "exit 0 with --run-vbls 2 under listed machine profile",
+        "archive_bytes": 140091
+      }
+    ]
+  },
+  "limitations": [
+    "The generated maps are demonstrated in the text renderer and character spelling path; semantic naming beyond those effects remains inferred.",
+    "Parser candidate TEXT:$12DF6 follows a separate path using static TEXT:$1111E; relationship to emitted internal tokens remains unresolved.",
+    "No natural BASIC source was typed or executed; GUI focus automation failed, so dynamic inputs were injected through Hatari debugger.",
+    "Dispatcher handler bodies are intentionally not explored beyond the first selected target.",
+    "Malformed synthetic render state can overrun its bounded input; it is excluded from valid fixture evidence."
+  ],
+  "reproduction": {
+    "E": {
+      "listing": "work/rg/p3b-token-tables/36E.s",
+      "sha256": "a2e04c6fdf007e40a740d159202c984c30a5719ac1a277df40a569f445f90338",
+      "command": "rg-dis work/extracted/p2/gfa-3.6/GFABASIC.PRG --arch 68k --cpu auto --machine st --quiet --no-annotate-gfa --no-smart-labels --annotate-offsets -o work/rg/p3b-token-tables/36E.s"
+    },
+    "D": {
+      "listing": "work/rg/p3b-token-tables/36D.s",
+      "sha256": "dc51c9420a4ffab7c414e62a0b557a3d7e88e777f42d73cab78c348ca9aecca4",
+      "command": "rg-dis work/extracted/p2/gfa-3.6tt/GFABASIC.PRG --arch 68k --cpu auto --machine tt --quiet --no-annotate-gfa --no-smart-labels --annotate-offsets -o work/rg/p3b-token-tables/36D.s"
+    }
+  },
+  "routine_registers_and_edges": [
+    {
+      "id": "table_builder",
+      "text": "0x1569E..0x1574E",
+      "classification": "OBSERVED constructor; its semantic label is INFERRED",
+      "callers": [
+        "0x1912 startup JSR"
+      ],
+      "callees": [],
+      "inputs": [
+        "A6 workspace base",
+        "initial workspace memory; A6+0xD2A observed zero after startup clear"
+      ],
+      "registers_used": [
+        "A0 table pointer and return",
+        "A1 static record cursor",
+        "D0 loop counters and prefix length",
+        "D1/D2 temporary keys and pointer arithmetic"
+      ],
+      "return": "A0 = A6+0x117C, observed dynamically in both variants at TEXT:$1918",
+      "side_effects": [
+        "clears 976 words",
+        "writes both maps",
+        "fills holes",
+        "clears 14 token slots"
+      ],
+      "confidence": "high for instruction effects, table layout and return address"
+    },
+    {
+      "id": "token_text_reader",
+      "text": "0x15276..0x152AA",
+      "classification": "INFERRED text/listing renderer",
+      "callers": [
+        "0x9080",
+        "0x908E",
+        "0xA034",
+        "0xFC38",
+        "0xFFB4"
+      ],
+      "callees": [
+        "local conversion branches including character map reads"
+      ],
+      "inputs": [
+        "A1 pointer to renderer input record",
+        "D7 record extent/length",
+        "A6 workspace base"
+      ],
+      "outputs": [
+        "A6+0x352 output buffer",
+        "A3 points into static record after map hit"
+      ],
+      "registers_observed": [
+        "D0 token word then byte offset",
+        "D1 relative record pointer and copied length",
+        "D6 shifted token code",
+        "A0 output cursor",
+        "A3 map/string cursor"
+      ],
+      "side_effects": [
+        "reads token map at A6+0x10CC",
+        "copies token bytes to output",
+        "may read character map on ordinary character path"
+      ],
+      "confidence": "high for lookup flow, medium for renderer functional label"
+    },
+    {
+      "id": "character_reader",
+      "text": "0x15416..0x1542C and extended path 0x158D0..0x15912",
+      "classification": "INFERRED character spelling conversion",
+      "callers": [
+        "internal path from 0x15276"
+      ],
+      "inputs": [
+        "A1 input cursor",
+        "A0 output cursor",
+        "A6 workspace base",
+        "D0 decoded character or extension byte"
+      ],
+      "outputs": [
+        "D1 sign-extended relative record pointer",
+        "A3 static record cursor"
+      ],
+      "registers_observed": [
+        "D0 becomes a doubled table byte offset",
+        "D1 loaded relative pointer",
+        "A3 points at A6+0xD2C then static record"
+      ],
+      "side_effects": [
+        "reads character map",
+        "copies record text into output"
+      ],
+      "confidence": "high for the two table loads; medium for functional label"
+    },
+    {
+      "id": "input_parser_candidate",
+      "text": "0x12DF6..",
+      "classification": "OBSERVED separate static-map access; parser semantics only partly in scope",
+      "callers": [
+        "interactive/token input path not fully traced"
+      ],
+      "callees": [
+        "0x12EF6 static record scanner"
+      ],
+      "inputs": [
+        "A0 input cursor",
+        "A1 parse output cursor"
+      ],
+      "registers_observed": [
+        "A2 static table cursor",
+        "D0/D2 record-prefix and compare values"
+      ],
+      "side_effects": [
+        "reads static TEXT:$1111E directly; no observed read of generated workspace table in this bounded code"
+      ],
+      "confidence": "high for direct map reference, low for full routine role"
+    },
+    {
+      "id": "handler_dispatcher",
+      "text": "0x1BD6..0x1BEC",
+      "classification": "OBSERVED separate indirect dispatcher",
+      "callers": [
+        "startup continuation paths at 0x1AE8 and 0x1B12; further callers include 0x862C"
+      ],
+      "callees": [
+        "one of 26 longword targets; first entry resolves to 0x869A"
+      ],
+      "inputs": [
+        "A5 frame pointer",
+        "A6 global workspace from absolute pointer",
+        "D6 vector byte offset"
+      ],
+      "outputs": [
+        "A4 advances by frame word",
+        "A0 selected target"
+      ],
+      "side_effects": [
+        "sets A7=A6+0x6500",
+        "executes JSR (A0)"
+      ],
+      "confidence": "high for first vector resolution; no handler bodies inferred"
+    }
+  ]
+}
