@@ -1,0 +1,376 @@
+{
+  "schema": "obasic.gfa.startup-comparison.v1",
+  "scope": {
+    "question": "GFA BASIC 3.6 E and 3.6TT D interpreter startup from GEMDOS entry through token-dispatch boundary",
+    "offset_basis": "TEXT-relative; PRG file offset = TEXT offset + 28; nominal loaded base = 0x10000",
+    "coverage_warning": "Selected reachable startup path only; no full-interpreter behavior equivalence is claimed.",
+    "entry_and_startup_ranges": [
+      "0x0000-0x0043",
+      "0x181C-0x1BD3"
+    ],
+    "dispatcher_boundary": "0x1BD6; unresolved indirect JSR at 0x1BEC",
+    "excluded_or_uncertain": [
+      "0x0002-0x0025 data",
+      "0x1A96-0x1A9F unknown/data",
+      "named.veto ranges unless reachability independently confirmed",
+      "command parser at 0x12DF6",
+      "indirect token handler targets"
+    ]
+  },
+  "artifacts": {
+    "tool": {
+      "name": "rg-dis",
+      "version": "0.11.46",
+      "sha256": "1a66448a2a3215ded9e89515f3e0c5fbb02e7d05ec9e8bc175dda492734bc4ef"
+    },
+    "independent_decoder": {
+      "name": "m68k-atari-mint-objdump",
+      "version": "GNU Binutils 2.30 (MiNT 20180703)",
+      "sha256": "e4fe8b8f4088837bc24ee27058b358e5375090737399f6a12c4f822f56a87bca"
+    },
+    "e": {
+      "distribution": "GFA BASIC 3.6",
+      "internal_identification": "GFA BASIC 3.60 TT E",
+      "member": "GFABASIC.PRG",
+      "extracted_path": "work/extracted/p2/gfa-3.6/GFABASIC.PRG",
+      "sha256": "d44ca139e6712fd26c14abdf1d4480120a137b70919e1b9ac1c7813a532b4c39",
+      "prg_bytes": 104597,
+      "text_bytes": 102288,
+      "data_bytes": 36,
+      "bss_bytes": 1088,
+      "relocations": 2024,
+      "rg_dis_instructions": 8582,
+      "rg_dis_covered_bytes": 25932
+    },
+    "d": {
+      "distribution": "GFA BASIC 3.6TT",
+      "internal_identification": "GFA BASIC 3.60 TT",
+      "member": "GFABASIC.PRG",
+      "extracted_path": "work/extracted/p2/gfa-3.6tt/GFABASIC.PRG",
+      "sha256": "b7706b9f9789c7ac3a9e06ded26aab55521e0c2552d2c51348ee0b87779adf6e",
+      "prg_bytes": 104770,
+      "text_bytes": 102460,
+      "data_bytes": 36,
+      "bss_bytes": 1088,
+      "relocations": 2024,
+      "rg_dis_instructions": 8582,
+      "rg_dis_covered_bytes": 25932
+    }
+  },
+  "reproduction": {
+    "listing_dir": "work/rg/p3a-startup/",
+    "listings": {
+      "e": "36E.s",
+      "d": "36D.s"
+    },
+    "region_json": {
+      "e": "36E.regions.json",
+      "d": "36D.regions.json"
+    },
+    "function_json": {
+      "e": "36E.functions.json",
+      "d": "36D.functions.json"
+    },
+    "relocation_json": {
+      "e": "36E.relocs.json",
+      "d": "36D.relocs.json"
+    },
+    "independent_disassembly": {
+      "e": "36E.objdump.txt",
+      "d": "36D.objdump.txt"
+    },
+    "commands": [
+      "rg-dis work/extracted/p2/gfa-3.6/GFABASIC.PRG --arch 68k --cpu auto --machine st --quiet --no-annotate-gfa --no-smart-labels --annotate-offsets -o work/rg/p3a-startup/36E.s",
+      "rg-dis work/extracted/p2/gfa-3.6tt/GFABASIC.PRG --arch 68k --cpu auto --machine tt --quiet --no-annotate-gfa --no-smart-labels --annotate-offsets -o work/rg/p3a-startup/36D.s"
+    ]
+  },
+  "comparison": {
+    "method": "corresponding TEXT offsets and opcode/operand inspection; numeric constants preserved; relocation records checked separately",
+    "entry_range": {
+      "range": "0x0000-0x0043",
+      "listing_instruction_rows": 9,
+      "raw_bytes": 68,
+      "raw_bytes_different": 2,
+      "exact_instruction_rows": 8
+    },
+    "startup_range": {
+      "range": "0x181C-0x1BD3",
+      "listing_instruction_rows": 243,
+      "raw_bytes": 952,
+      "raw_bytes_different": 6
+    },
+    "combined_instruction_rows": 252,
+    "operand_different_instruction_sites": [
+      "0x0030",
+      "0x1820",
+      "0x1A5A",
+      "0x1A70"
+    ],
+    "operand_difference_classification": "two relocated BSS pointers and two localized error-string references; numeric constants were not normalized",
+    "control_transfers": {
+      "conditional_or_unconditional_branches": 40,
+      "direct_calls": 44,
+      "jmp_instructions": 2,
+      "direct_statically_resolved_targets_matching": 86,
+      "direct_targets_denominator": 86,
+      "indirect_jump_unresolved": 1,
+      "dispatcher_indirect_jsr_outside_scope": "0x1BEC"
+    },
+    "relocation_sites_file_loaded_addresses": [
+      "0x10032",
+      "0x11822",
+      "0x11A5C",
+      "0x11A72"
+    ],
+    "data_tables": {
+      "jump_targets": {
+        "text_range": "0x17B4-0x181B",
+        "longwords": 26,
+        "exact_matches": 26
+      },
+      "vdi_aes_offsets": {
+        "text_range": "0xA960-0xA9B7",
+        "longwords": 22,
+        "exact_matches": 22
+      }
+    },
+    "full_p2_context": {
+      "candidate_rows_e": 4329,
+      "candidate_rows_d": 4355,
+      "paired": 4327,
+      "exact_pairs": 4324,
+      "changed_reference_operands": 3,
+      "verifiable_branches_equal": 920,
+      "verifiable_branches_denominator": 920,
+      "unresolved_branches": 295,
+      "whole_program_behavior": "not established"
+    }
+  },
+  "routines": [
+    {
+      "id": "entry_stub",
+      "e": "0x0000-0x0043",
+      "d": "0x0000-0x0043",
+      "classification": "structural identity with BSS pointer relocation",
+      "confidence": "high for edges/effects; medium for functional label",
+      "callers": [
+        "GEMDOS entry"
+      ],
+      "callees": [
+        "0x181C"
+      ],
+      "effects": [
+        "copy ESC word to BSS output buffer",
+        "write four -1 longs to BSS sentinel"
+      ],
+      "falsification": "independent decoder confirms 0x0000->0x0026->0x181C and stores"
+    },
+    {
+      "id": "main_initialization",
+      "e": "0x181C-0x1974",
+      "d": "0x181C-0x1974",
+      "classification": "structurally identical; BSS pointer relocation",
+      "confidence": "high for control flow and trap sequence; medium for helper semantics",
+      "callers": [
+        "0x003E"
+      ],
+      "callees": [
+        "0x1898",
+        "0x189E",
+        "0x18B8",
+        "0x18C2",
+        "0x18CC",
+        "0x18DE",
+        "0x18F2",
+        "0x1902",
+        "0x190A",
+        "0x190E",
+        "0x1914",
+        "0x1918",
+        "0x191C",
+        "0x1920"
+      ],
+      "globals": [
+        "workspace A6",
+        "basepage A5",
+        "workspace+0x08",
+        "workspace+0x0C",
+        "workspace+0xC0",
+        "workspace+0xC4",
+        "workspace+0xC8",
+        "workspace+0xCC",
+        "workspace+0xD0",
+        "workspace+0x206C"
+      ],
+      "system_services": [
+        "GEMDOS Mshrink #74",
+        "GEMDOS Malloc #72",
+        "XBIOS Logbase #3",
+        "XBIOS Getrez #4",
+        "Line-A opcode 0"
+      ],
+      "falsification": "check trap setup, stack order, and destination writes in both raw listings"
+    },
+    {
+      "id": "jump_stub_builder",
+      "e": "0x184C-0x186E",
+      "d": "0x184C-0x186E",
+      "classification": "instruction-identical; target table exact",
+      "confidence": "high",
+      "callers": [
+        "main_initialization"
+      ],
+      "callees": [],
+      "data": [
+        "26 longwords at 0x17B4",
+        "26 six-byte JMP stubs at workspace+0xD6"
+      ],
+      "falsification": "compare each table word with emitted stub extension longword"
+    },
+    {
+      "id": "command_tail_reader",
+      "e": "0x1924-0x1974",
+      "d": "0x1924-0x1974",
+      "classification": "same structure",
+      "confidence": "high for operations; low for tail contract",
+      "callers": [
+        "main_initialization"
+      ],
+      "callees": [
+        "0x1978 fallback",
+        "0x1B16 shared reset path"
+      ],
+      "data": [
+        "basepage+0x80",
+        "workspace+0x452"
+      ],
+      "falsification": "boundary command-tail test under TOS/Hatari; currently UNMEASURED"
+    },
+    {
+      "id": "interactive_fallback",
+      "e": "0x1978-0x1AC4",
+      "d": "0x1978-0x1AC4",
+      "classification": "same control structure with localized error data",
+      "confidence": "medium",
+      "callers": [
+        "main_initialization",
+        "command_tail_reader"
+      ],
+      "callees": [
+        "0x12DF6 parser candidate",
+        "0x1B16",
+        "0x1BD6 dispatcher boundary"
+      ],
+      "falsification": "trace prompt/parser calls with controlled input; UNMEASURED"
+    },
+    {
+      "id": "startup_console_reset",
+      "e": "0x1B16-0x1B75",
+      "d": "0x1B16-0x1B75",
+      "classification": "instruction-identical",
+      "confidence": "medium",
+      "callers": [
+        "fallback and command path"
+      ],
+      "callees": [
+        "0x1BA0",
+        "0xA694",
+        "0xCF84",
+        "0xF914",
+        "0xBA0A",
+        "0xA4AA",
+        "0xA0B0",
+        "0x79FC",
+        "0xACA2"
+      ],
+      "system_services": [
+        "AES TRAP #2 downstream; function meaning unresolved"
+      ],
+      "falsification": "record writes/output and AES parameter block; dynamic run unavailable"
+    },
+    {
+      "id": "mouse_guard",
+      "e": "0x1B7C-0x1BCF",
+      "d": "0x1B7C-0x1BCF",
+      "classification": "instruction-identical",
+      "confidence": "high for Line-A selector/register-save sequence; medium for guard purpose",
+      "callers": [
+        "0xECE2",
+        "0xECE8",
+        "startup_console_reset"
+      ],
+      "callees": [
+        "Line-A opcode 9",
+        "Line-A opcode 10"
+      ],
+      "falsification": "inspect Line-A state predicates and observe mouse state in emulator; UNMEASURED"
+    },
+    {
+      "id": "terminal_output",
+      "e": "0xF914 and 0xFC88",
+      "d": "0xF914 and 0xFC88",
+      "classification": "instruction-identical",
+      "confidence": "high",
+      "callers": [
+        "prompt",
+        "startup_console_reset"
+      ],
+      "callees": [
+        "BIOS Bconout"
+      ],
+      "parameters": [
+        "A0 NUL-terminated string"
+      ],
+      "system_services": [
+        "BIOS TRAP #13 function 3 device 2"
+      ],
+      "falsification": "verify emitted byte stream from fixed string fixture; dynamic run unavailable"
+    },
+    {
+      "id": "dispatcher_boundary",
+      "e": "0x1BD6+",
+      "d": "0x1BD6+",
+      "classification": "not reconstructed beyond indirect call boundary",
+      "confidence": "high for boundary, low for handler mapping",
+      "callers": [
+        "startup paths"
+      ],
+      "callees": [
+        "indirect JSR (A0) at 0x1BEC, target unresolved"
+      ],
+      "falsification": "resolve table values and trace target selection; outside this task"
+    }
+  ],
+  "non_code_and_unmeasured": [
+    {
+      "region": "0x0002-0x0025",
+      "classification": "data",
+      "evidence": "ESC sequence and constants; skipped by entry branch"
+    },
+    {
+      "region": "0x1A96-0x1A9F",
+      "classification": "unknown/data",
+      "evidence": "rg-dis region classification; not promoted from proximity"
+    },
+    {
+      "region": "0x44-0x17AB",
+      "classification": "outside direct startup path",
+      "evidence": "entry jumps over it; P2 candidate span is not a function boundary"
+    },
+    {
+      "region": "remaining full TEXT",
+      "classification": "partial decoder coverage",
+      "evidence": "rg-dis covers 25,932/102,288 E TEXT and 25,932/102,460 D TEXT"
+    },
+    {
+      "region": "dynamic behavior",
+      "classification": "UNMEASURED",
+      "evidence": "Hatari 2.6.1 available, no TOS ROM found locally; none downloaded"
+    }
+  ],
+  "external_abi_references": [
+    "https://www.bitsavers.org/pdf/atari/ST/Atari_ST_GEM_Programming_1986/GEM_0042.pdf",
+    "https://ftp.pigwa.net/stuff/collections/Atari%20documents/Manuals/The_Atari_Compendium.pdf",
+    "https://www.atari-wiki.com/index.php?title=Line_A"
+  ]
+}
