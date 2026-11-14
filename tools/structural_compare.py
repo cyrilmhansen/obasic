@@ -16,7 +16,7 @@ import json
 import re
 from pathlib import Path
 
-OFFSET = re.compile(r";\s*\$([0-9A-Fa-f]{6,8})\s*\|")
+OFFSET = re.compile(r";\s*\$([0-9A-Fa-f]{4,8})\s*\|")
 LABEL = re.compile(r"^([A-Za-z_.$][\w.$]*):\s*$")
 INSN = re.compile(r"^\s{4}([A-Z][A-Z0-9]*(?:\.[BWL])?)\s*(.*?)\s*$")
 BRANCH = re.compile(r"^(?:B(?:RA|SR|CC|CS|EQ|GE|GT|HI|LE|LS|LT|MI|NE|PL|VC|VS)|DB(?:CC|CS|EQ|F|GE|GT|HI|LE|LS|LT|MI|NE|PL|RA|T|VC|VS)|JMP|JSR)\b", re.I)

@@ -43,6 +43,10 @@ class StructuralCompareTests(unittest.TestCase):
         self.assertEqual(len(pairs), 2)
         self.assertEqual([x["offset"] for j, x in enumerate(b) if j not in {q[1] for q in pairs}], [2])
 
+    def test_short_rg_dis_offsets_are_parsed(self):
+        ins = parse_listing("    RTS ; $0000 |\n    NOP ; $FFFE |")
+        self.assertEqual([x["offset"] for x in ins], [0, 0xFFFE])
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -75,7 +75,7 @@ class Fat12Image:
                 continue
             yield entry
 
-    def extract(self, member: str) -> bytes:
+    def extract(self, member: str, recover_gemdos: bool = False) -> bytes:
         parts = [x for x in member.replace("\\", "/").split("/") if x and x != "."]
         if not parts or any(x == ".." for x in parts):
             raise ValueError("member must be a non-empty path inside the image")
@@ -95,10 +95,49 @@ class Fat12Image:
             raise IsADirectoryError(member)
         size = int.from_bytes(selected[28:32], "little")
         first = int.from_bytes(selected[26:28], "little")
-        content = b"".join(self.cluster_bytes(c) for c in self.chain(first))[:size]
-        if len(content) != size:
-            raise ValueError(f"truncated member: expected {size}, got {len(content)} bytes")
+        reachable = b"".join(self.cluster_bytes(c) for c in self.chain(first))
+        if len(reachable) < size:
+            if not recover_gemdos:
+                raise ValueError(f"truncated member: expected {size}, got {len(reachable)} bytes")
+            content, _ = recover_gemdos_prg(reachable)
+            if len(content) > len(reachable):
+                raise ValueError("GEMDOS executable extent exceeds reachable FAT chain")
+            return content
+        content = reachable[:size]
         return content
+
+
+def recover_gemdos_prg(reachable: bytes) -> tuple[bytes, int]:
+    """Trim a short FAT chain to a complete GEMDOS PRG header/relocation end.
+
+    This is an explicit recovery path for inconsistent directory size fields;
+    it never invents missing bytes and requires a complete PRG section layout
+    and a terminated relocation table.
+    """
+    if len(reachable) < 32 or reachable[:2] != b"\x60\x1a":
+        raise ValueError("short chain is not a complete GEMDOS PRG candidate")
+    text, data, _bss, symbols = (int.from_bytes(reachable[i:i + 4], "big")
+                                 for i in (2, 6, 10, 14))
+    pos = 28 + text + data + symbols
+    if pos + 4 > len(reachable):
+        raise ValueError("GEMDOS sections extend beyond reachable FAT chain")
+    current = int.from_bytes(reachable[pos:pos + 4], "big")
+    pos += 4
+    relocations = 0
+    if current:
+        relocations = 1
+        while pos < len(reachable):
+            delta = reachable[pos]
+            pos += 1
+            if delta == 0:
+                return reachable[:pos], relocations
+            if delta == 1:
+                current += 254
+            else:
+                current += delta
+                relocations += 1
+        raise ValueError("unterminated GEMDOS relocation table")
+    return reachable[:pos], relocations
 
 
 def main(argv=None) -> int:
@@ -106,8 +145,10 @@ def main(argv=None) -> int:
     parser.add_argument("image", type=Path)
     parser.add_argument("member", help="path, e.g. COMPILER/GFA_BCOM.PRG")
     parser.add_argument("output", type=Path)
+    parser.add_argument("--recover-gemdos", action="store_true",
+                         help="recover a complete PRG from a FAT chain shorter than its directory size")
     args = parser.parse_args(argv)
-    data = Fat12Image(args.image.read_bytes()).extract(args.member)
+    data = Fat12Image(args.image.read_bytes()).extract(args.member, recover_gemdos=args.recover_gemdos)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_bytes(data)
     print(f"extracted {args.member}: {len(data)} bytes -> {args.output}")
