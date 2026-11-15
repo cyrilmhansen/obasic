@@ -66,22 +66,22 @@ References: `analysis/gfa/P3C3_HANDOFF.md`,
 linked from `analysis/gfa/P3C2_HANDOFF.md`.
 <!-- guard:begin checkpoint -->
 checkpoint-schema: 3
-checkpoint-generation: 3
-checkpoint-id: g3-6aae25020c88
-checkpoint-kind: auto
+checkpoint-generation: 5
+checkpoint-id: g5-199822e892b0
+checkpoint-kind: manual
 content-delta: new
 readiness: unattested
-status: checkpoint (guard level 3, remaining ~9120, session 01a1dc29-4525-7386-b21c-5306536e80b9)
-checkpointed: 2026-11-15T07:45:39.702Z
+status: checkpoint (guard level 0, remaining ~136733, session 01a1dc29-4525-7386-b21c-5306536e80b9)
+checkpointed: 2026-11-15T07:55:07.453Z
 source-goal: b3b8726a43fed9e764858f945b07655125e0a9acb392a8e6a161ee1c8affba37
-source-progress: 83ca76a7c39c846b4862e0208ec84ca5590895f49807d6b38df3c9f2a9fc0dba
+source-progress: c4c48abf0015352d9c46d61d176df6086ab381e42e4eba041650087a7cc56d8f
 source-handoff: 7f4f2ec12a7a33a62f6c386249374474f40e50f7ef3817d1dac419741be1efc3
-source-learnings: 15f53eab712301352a51666cc6967b034b809a871edcc18fa1e1da71f8c5760f
+source-learnings: cdad39cbc661d942c3b25e2c91f12cc193e11899b52345aa70d02a23d51c470c
 source-config: ec61426c39667346e3f0370be688b0523ad5d7941de4d913a9bf0618f785e08c
 
 
 ### Last verified state
-guard level 3; checkpoint requested (auto at level 3)
+guard level 0; checkpoint requested (finalize: P3-C3 committed (5cc56ed, 61e4b8a). Blocked only on operator GOAL.md heading rename for attestation.)
 
 ### Unfinished operations
 - (none recorded)
@@ -95,4 +95,7 @@ to P3-D keeping the target unnamed. Do not start P3-D without explicit operator 
 
 Also open, operator-side: rename `GOAL.md` headings to `## Objective` / `## Acceptance
 criteria` (see LEARNINGS.md Proposed) so checkpoint attestation passes.
+
+### Guard notes
+P3-C3 committed (5cc56ed, 61e4b8a). Blocked only on operator GOAL.md heading rename for attestation.
 <!-- guard:end checkpoint -->

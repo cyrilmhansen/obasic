@@ -62,15 +62,15 @@ the target's dynamic execution order and general function remain unknown; P3-C i
 complete.
 <!-- guard:begin checkpoint -->
 checkpoint-schema: 3
-checkpoint-generation: 4
-checkpoint-id: g4-c1d016957f4a
+checkpoint-generation: 5
+checkpoint-id: g5-199822e892b0
 checkpoint-kind: manual
 content-delta: new
 readiness: unattested
 guard-level: 0
-checkpointed: 2026-11-15T07:54:52.509Z
+checkpointed: 2026-11-15T07:55:07.453Z
 source-goal: b3b8726a43fed9e764858f945b07655125e0a9acb392a8e6a161ee1c8affba37
-source-progress: 83ca76a7c39c846b4862e0208ec84ca5590895f49807d6b38df3c9f2a9fc0dba
+source-progress: c4c48abf0015352d9c46d61d176df6086ab381e42e4eba041650087a7cc56d8f
 source-handoff: 7f4f2ec12a7a33a62f6c386249374474f40e50f7ef3817d1dac419741be1efc3
 source-learnings: cdad39cbc661d942c3b25e2c91f12cc193e11899b52345aa70d02a23d51c470c
 source-config: ec61426c39667346e3f0370be688b0523ad5d7941de4d913a9bf0618f785e08c
