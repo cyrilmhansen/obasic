@@ -2,10 +2,10 @@
 
 ## Current phase
 
-P3-D/1 is complete with explicit limits. P3-C3's target TEXT `$5D04` was statically
-graphed and partially reconstructed. Natural E/D runs for both PRINT cases reach the
-Bconout boundary at TEXT+`$5E36`; internal block order and general semantics remain
-UNMEASURED.
+P3-D/2 is complete with explicit limits. Hatari's documented natural trace chain
+captured ordered CPU execution from TEXT `$5D04`/runtime `$14608` to the Bconout
+frontier TEXT+`$5E36` for E/D and both PRINT fixtures. Chain paths contain 363
+instructions; numeric paths contain 979. General semantics and Fwrite remain UNMEASURED.
 
 ## Completed
 
@@ -41,9 +41,9 @@ UNMEASURED.
 
 ## Next action
 
-**P3-D/1 is finished with limits.** Preserve the new report, JSON, handoff,
-reconstruction and `work/p3d1/`. Any continuation must first obtain reliable natural
-block-order instrumentation; do not infer missing blocks.
+**Clôturer P3-D/2 après vérification automatisée, commit local et finalisation du
+checkpoint; conserver le chemin Fwrite comme UNMEASURED.** Preserve the new trace
+report, JSON, handoff, tools and `work/p3d2/`.
 
 ## Pending
 
@@ -53,9 +53,8 @@ block-order instrumentation; do not infer missing blocks.
 
 ## Blockers
 
-No blocker for the bounded P3-D/1 deliverable. Hatari 2.6.1 interactive/FIFO stepping
-and the candidate-block probe did not yield ordered intermediate execution; this is a
-recorded limit, not evidence of absent blocks.
+No blocker for the bounded P3-D/2 deliverable. The old FIFO stepping failure remains
+recorded as falsified methodology; the documented natural trace chain succeeded.
 <!-- guard:begin checkpoint -->
 checkpoint-schema: 3
 checkpoint-generation: 7

@@ -40,6 +40,14 @@
   files before the run ended. This is a method failure/negative result, not evidence that
   candidate blocks were unexecuted.
 
+- **P3-D/2 natural CPU trace (accepted, verified):** Hatari 2.6.1's documented
+  `trace cpu_disasm` activated at natural runtime `$14608` and disabled at `$1473A`
+  captured ordered instruction paths without FIFO stepping. E/D PC lists match per
+  fixture; chain paths have 363 instructions and numeric paths 979. The pre-TRAP
+  stack setup contains `$41`/`$33`, device 2 and function 3, while Fwrite remains
+  UNMEASURED. Evidence: `analysis/gfa/OUTPUT_TRACE_36.md`, its DATA JSON and
+  `work/p3d2/`.
+
 ## Falsified or superseded
 
 - The first `PRINT "A"` keyboard attempt yielded `PRINT 3A3` because host X11 symbols,

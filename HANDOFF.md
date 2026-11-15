@@ -9,29 +9,26 @@ context. Evidence reports remain the authority for historical claims.
 
 ## Last verified state
 
-P3-D/1 is the latest bounded milestone. The P3-C3 natural runs were organized into a
-static candidate graph and a partial C reconstruction. The body at TEXT `$5D04` / runtime
-`$14608` contains format-field accesses, a Bconout route (`TRAP #13`, function 3) and a
-neighboring Fwrite route (`TRAP #1`, function 64). All four natural E/D runs reach
-TEXT+`$5E36` after Bconout with D0=`$1`, D6=`$2`, and the expected `$41`/`$33` stack
-evidence. Intermediate block order, field values, Fwrite selection and general routine
-semantics remain UNMEASURED; `$5D04` remains intentionally unnamed. See
-`analysis/gfa/OUTPUT_36.md`, its JSON and `analysis/gfa/P3D1_HANDOFF.md`. P3-C's
+P3-D/2 is the latest bounded milestone. Hatari 2.6.1 `trace cpu_disasm`, activated by
+`:trace :once :file` at natural runtime `$14608` and disabled at `$1473A`, captured
+ordered CPU instructions for E/D × `PRINT "A"`/`PRINT 1+2`. The chain and number paths
+have 363 and 979 recorded instructions respectively; E and D PC lists match per case.
+The Bconout boundary and visible `A`/`3` results are retained. General semantics,
+workspace values not printed by the trace and Fwrite selection remain UNMEASURED. See
+`analysis/gfa/OUTPUT_TRACE_36.md`, its JSON and `analysis/gfa/P3D2_HANDOFF.md`. P3-C's
 scanner/tables remain incomplete.
 
 ## Unfinished operations
 
-P3-D/1 is complete with explicit limits. The durable checkpoint is current and attested;
-renewal remains disabled by policy. No scientific operation remains in this phase. A
-future phase requires reliable natural block instrumentation before extending the
-reconstruction.
+P3-D/2 is complete with explicit limits. The durable checkpoint is current and attested;
+renewal remains disabled by policy. No further scientific operation remains in this
+phase.
 
 ## Next action
 
-**P3-D/1 is finished with limits.** Preserve `analysis/gfa/OUTPUT_36.md`,
-`OUTPUT_36_DATA.json`, `P3D1_HANDOFF.md` and the partial reconstruction. If continuing,
-first obtain reliable natural block-order instrumentation; do not infer missing blocks or
-rename TEXT `$5D04`.
+**Clôturer P3-D/2 après vérification automatisée, commit local et finalisation du
+checkpoint; conserver le chemin Fwrite comme UNMEASURED.** Preserve all P3-D/2
+reports, JSON, tools and raw traces; do not rename TEXT `$5D04`.
 
 ## Discoveries not yet incorporated
 
