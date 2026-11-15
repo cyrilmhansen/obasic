@@ -46,7 +46,15 @@ Await operator direction (options in `HANDOFF.md`): recover the body's dynamic
 instruction order via chained `:trace :once` breakpoints or read-watchpoints, or proceed
 to P3-D. Operator-side: `GOAL.md` heading rename so checkpoint attestation passes.
 
-## Blockers and limits
+## Pending
+
+- Operator: rename `GOAL.md` headings (`## Objective`, `## Acceptance criteria`) so
+  checkpoint attestation can pass; then re-run `/handoff finalize`.
+- Recover the body's dynamic instruction order (chained `:trace :once` breakpoints or
+  read-watchpoints) — only with operator direction.
+- P3-C completion items: `$12EF6` scanner observation, P3-B tables, naming `$5D04`.
+
+## Blockers
 
 Pi 1.5.2 and context-guard files are locally available. Hatari 2.6.1 interactive/FIFO
 stepping could not halt the guest at the natural target entry (falsified, recorded);
@@ -54,17 +62,17 @@ the target's dynamic execution order and general function remain unknown; P3-C i
 complete.
 <!-- guard:begin checkpoint -->
 checkpoint-schema: 3
-checkpoint-generation: 3
-checkpoint-id: g3-6aae25020c88
-checkpoint-kind: auto
+checkpoint-generation: 4
+checkpoint-id: g4-c1d016957f4a
+checkpoint-kind: manual
 content-delta: new
 readiness: unattested
-guard-level: 3
-checkpointed: 2026-11-15T07:45:39.702Z
+guard-level: 0
+checkpointed: 2026-11-15T07:54:52.509Z
 source-goal: b3b8726a43fed9e764858f945b07655125e0a9acb392a8e6a161ee1c8affba37
 source-progress: 83ca76a7c39c846b4862e0208ec84ca5590895f49807d6b38df3c9f2a9fc0dba
 source-handoff: 7f4f2ec12a7a33a62f6c386249374474f40e50f7ef3817d1dac419741be1efc3
-source-learnings: 15f53eab712301352a51666cc6967b034b809a871edcc18fa1e1da71f8c5760f
+source-learnings: cdad39cbc661d942c3b25e2c91f12cc193e11899b52345aa70d02a23d51c470c
 source-config: ec61426c39667346e3f0370be688b0523ad5d7941de4d913a9bf0618f785e08c
 next-action: **Await operator direction.** P3-C3/1 is closed with its documented limits (see
 `analysis/gfa/P3C3_HANDOFF.md`). Options recorded but NOT started: (a) chained
