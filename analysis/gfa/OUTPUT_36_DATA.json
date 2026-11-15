@@ -1,0 +1,48 @@
+{
+  "phase": "P3-D/1",
+  "scope": ["PRINT \"A\"", "PRINT 1+2"],
+  "binaries": {
+    "e": {"path":"work/extracted/p2/gfa-3.6/GFABASIC.PRG","sha256":"d44ca139e6712fd26c14abdf1d4480120a137b70919e1b9ac1c7813a532b4c39"},
+    "d": {"path":"work/extracted/p2/gfa-3.6tt/GFABASIC.PRG","sha256":"b7706b9f9789c7ac3a9e06ded26aab55521e0c2552d2c51348ee0b87779adf6e"}
+  },
+  "static": {
+    "source":"work/p3c3/target-body-5d04.s",
+    "runtime_entry":"0x14608",
+    "text_offset":"0x5d04",
+    "text_base_observed":"0xe904",
+    "capture_size":512,
+    "capture_sha256":"078234b7432e6d611f1b216372b77a74a26cb5f0f407db0b75b7ecf299861338",
+    "literal_data":["TEXT+$5D7A..$5D89: sixteen spaces"],
+    "fields":["A6+$1C2","A6+$7C6","A6+$20F2","A6+$20AE","A6+$20B0","A6+$20B2"],
+    "routes": {
+      "bconout":{"text_range":"$5E24..$5E3C","trap":"#13","function":3,"stack":"character, device, 3"},
+      "fwrite":{"text_range":"$5E44..$5E58","trap":"#1","function":64,"stack":"buffer, count, $FFFD"}
+    }
+  },
+  "natural_observations": {
+    "variants":["e","d"],
+    "cases":["print-a","print-1plus2"],
+    "entry_return":"0x104f2 = TEXT+$1bee",
+    "boundary_pc":"0x1473a = TEXT+$5e36",
+    "boundary_regs":{"D0":"00000001","D6":"00000002"},
+    "characters":{"print-a":"0x41","print-1plus2":"0x33"},
+    "return_chain":["0x11070","0x14650","0x104f2"],
+    "visible":{"print-a":"A then OK >","print-1plus2":"3 then OK >"},
+    "dynamic_block_order":"UNMEASURED"
+  },
+  "falsification": {
+    "single_step":"FALSIFIED: Hatari resumed before first c 1; see P3-C3 report",
+    "p3d1_block_breakpoints":"UNSUCCESSFUL: entry captured, no later candidate block file before run ended",
+    "additional_fixtures":0,
+    "reason":"Existing fixtures distinguish output characters but not internal blocks; instrumentation did not yield ordered hits."
+  },
+  "artifacts": {
+    "report":"analysis/gfa/OUTPUT_36.md",
+    "reconstruction":"reconstruction/gfa-3.6/output/output.c",
+    "raw":"work/p3d1/",
+    "driver":"work/p3d1/run_block_trace.py",
+    "prior_evidence":"analysis/gfa/NATURAL_EXECUTION_36_C3_DATA.json"
+  },
+  "verification": {"make_test":"exit 0; 25 tests", "git_diff_check":"exit 0 before final edits"},
+  "limits":["No dynamic intermediate PC order","No general routine name","No measured Fwrite selection","No E/D equivalence beyond two cases"]
+}

@@ -2,11 +2,10 @@
 
 ## Current phase
 
-P3-C remains incomplete. P3-C2 established exact direct-mode keyboard input and a
-first natural parser-to-dispatch observation. P3-C3 bounded the target TEXT `$5D04`:
-natural entry, 512-byte body capture and reproducible rg-dis listing, and the natural
-Bconout output boundary at TEXT+`$5E36`, E/D identical for the two PRINT cases. P3-D is
-NOT started; operator direction required.
+P3-D/1 is complete with explicit limits. P3-C3's target TEXT `$5D04` was statically
+graphed and partially reconstructed. Natural E/D runs for both PRINT cases reach the
+Bconout boundary at TEXT+`$5E36`; internal block order and general semantics remain
+UNMEASURED.
 
 ## Completed
 
@@ -42,38 +41,35 @@ NOT started; operator direction required.
 
 ## Next action
 
-Await operator direction (options in `HANDOFF.md`): recover the body's dynamic
-instruction order via chained `:trace :once` breakpoints or read-watchpoints, or proceed
-to P3-D. Operator-side: `GOAL.md` heading rename so checkpoint attestation passes.
+**P3-D/1 is finished with limits.** Preserve the new report, JSON, handoff,
+reconstruction and `work/p3d1/`. Any continuation must first obtain reliable natural
+block-order instrumentation; do not infer missing blocks.
 
 ## Pending
 
-- Operator: rename `GOAL.md` headings (`## Objective`, `## Acceptance criteria`) so
-  checkpoint attestation can pass; then re-run `/handoff finalize`.
-- Recover the body's dynamic instruction order (chained `:trace :once` breakpoints or
-  read-watchpoints) — only with operator direction.
-- P3-C completion items: `$12EF6` scanner observation, P3-B tables, naming `$5D04`.
+- Future optional work: obtain reliable natural block-order and field-value instrumentation.
+- P3-C completion items remain separate: `$12EF6` scanner observation, P3-B tables, naming
+  `$5D04`.
 
 ## Blockers
 
-Pi 1.5.2 and context-guard files are locally available. Hatari 2.6.1 interactive/FIFO
-stepping could not halt the guest at the natural target entry (falsified, recorded);
-the target's dynamic execution order and general function remain unknown; P3-C is not
-complete.
+No blocker for the bounded P3-D/1 deliverable. Hatari 2.6.1 interactive/FIFO stepping
+and the candidate-block probe did not yield ordered intermediate execution; this is a
+recorded limit, not evidence of absent blocks.
 <!-- guard:begin checkpoint -->
 checkpoint-schema: 3
-checkpoint-generation: 5
-checkpoint-id: g5-199822e892b0
+checkpoint-generation: 6
+checkpoint-id: g6-abc1668752fc
 checkpoint-kind: manual
 content-delta: new
-readiness: unattested
+readiness: attested
 guard-level: 0
-checkpointed: 2026-11-15T07:55:07.453Z
-source-goal: b3b8726a43fed9e764858f945b07655125e0a9acb392a8e6a161ee1c8affba37
+checkpointed: 2026-11-15T08:16:08.048Z
+source-goal: cf78d67219ee2fe666f7f42456db99568d8a5ec13609e034ac86771a73edf102
 source-progress: c4c48abf0015352d9c46d61d176df6086ab381e42e4eba041650087a7cc56d8f
 source-handoff: 7f4f2ec12a7a33a62f6c386249374474f40e50f7ef3817d1dac419741be1efc3
-source-learnings: cdad39cbc661d942c3b25e2c91f12cc193e11899b52345aa70d02a23d51c470c
-source-config: ec61426c39667346e3f0370be688b0523ad5d7941de4d913a9bf0618f785e08c
+source-learnings: 1021e1a81f1847511707836b4e2f8c0974766b9872625ac3a53bd0b993a75be2
+source-config: 37f26ea8df3ae379db57044849c73851c3d7822b1a09fe4b2c2a59f1b4542707
 next-action: **Await operator direction.** P3-C3/1 is closed with its documented limits (see
 `analysis/gfa/P3C3_HANDOFF.md`). Options recorded but NOT started: (a) chained
 `:trace :once` per-instruction breakpoints to recover the body's dynamic order, (b)
@@ -82,4 +78,7 @@ to P3-D keeping the target unnamed. Do not start P3-D without explicit operator 
 
 Also open, operator-side: rename `GOAL.md` headings to `## Objective` / `## Acceptance
 criteria` (see LEARNINGS.md Proposed) so checkpoint attestation passes.
+readiness-by: session:01a1de46-d8ab-752e-ab82-adc4a8c41642
+readiness-at: 2026-11-15T08:16:08.052Z
+readiness-checkpoint: g6-abc1668752fc
 <!-- guard:end checkpoint -->

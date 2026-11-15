@@ -29,6 +29,17 @@
   and D. Dynamic instruction order inside the body remains UNMEASURED; the target is not
   named. Evidence: `analysis/gfa/NATURAL_EXECUTION_36_C3.md`, its DATA JSON.
 
+- **P3-D/1 bounded output route (accepted for the measured cases):** static code at
+  TEXT `$5D04` contains a Bconout loop (`TRAP #13`, function 3) and a neighboring Fwrite
+  path (`TRAP #1`, function 64). Natural E/D runs for `PRINT "A"` and `PRINT 1+2` reach
+  TEXT+`$5E36` after Bconout with device 2 and characters `$41`/`$33`; this does not
+  establish general routine semantics or Fwrite selection. Evidence:
+  `analysis/gfa/OUTPUT_36.md`, `OUTPUT_36_DATA.json`, `P3D1_HANDOFF.md`.
+- **P3-D/1 block probe (falsified as an instrumentation method):**
+  `work/p3d1/run_block_trace.py` captured target entry but no ordered intermediate block
+  files before the run ended. This is a method failure/negative result, not evidence that
+  candidate blocks were unexecuted.
+
 ## Falsified or superseded
 
 - The first `PRINT "A"` keyboard attempt yielded `PRINT 3A3` because host X11 symbols,
