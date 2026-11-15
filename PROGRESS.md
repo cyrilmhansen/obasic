@@ -58,27 +58,23 @@ and the candidate-block probe did not yield ordered intermediate execution; this
 recorded limit, not evidence of absent blocks.
 <!-- guard:begin checkpoint -->
 checkpoint-schema: 3
-checkpoint-generation: 6
-checkpoint-id: g6-abc1668752fc
+checkpoint-generation: 7
+checkpoint-id: g7-0f4e1ab3f156
 checkpoint-kind: manual
 content-delta: new
 readiness: attested
 guard-level: 0
-checkpointed: 2026-11-15T08:16:08.048Z
+checkpointed: 2026-11-15T08:33:16.089Z
 source-goal: cf78d67219ee2fe666f7f42456db99568d8a5ec13609e034ac86771a73edf102
-source-progress: c4c48abf0015352d9c46d61d176df6086ab381e42e4eba041650087a7cc56d8f
-source-handoff: 7f4f2ec12a7a33a62f6c386249374474f40e50f7ef3817d1dac419741be1efc3
-source-learnings: 1021e1a81f1847511707836b4e2f8c0974766b9872625ac3a53bd0b993a75be2
+source-progress: e5f5868f47d8c446ff9b1be77ffbca5ad9a36a1be36f990ecf91d096c1824942
+source-handoff: c54fdc25f12e5f844aece00f13c050b95756c8741f367fa0a24f22cf1ee02f58
+source-learnings: 6d9abfc8f58050c67103f4c6fa8169f6b48f539e52f9eec95015e34e290af7d6
 source-config: 37f26ea8df3ae379db57044849c73851c3d7822b1a09fe4b2c2a59f1b4542707
-next-action: **Await operator direction.** P3-C3/1 is closed with its documented limits (see
-`analysis/gfa/P3C3_HANDOFF.md`). Options recorded but NOT started: (a) chained
-`:trace :once` per-instruction breakpoints to recover the body's dynamic order, (b)
-read-watchpoints on the body's format fields during natural continuation, or (c) proceed
-to P3-D keeping the target unnamed. Do not start P3-D without explicit operator approval.
-
-Also open, operator-side: rename `GOAL.md` headings to `## Objective` / `## Acceptance
-criteria` (see LEARNINGS.md Proposed) so checkpoint attestation passes.
-readiness-by: session:01a1de46-d8ab-752e-ab82-adc4a8c41642
-readiness-at: 2026-11-15T08:16:08.052Z
-readiness-checkpoint: g6-abc1668752fc
+next-action: **P3-D/1 is finished with limits.** Preserve `analysis/gfa/OUTPUT_36.md`,
+`OUTPUT_36_DATA.json`, `P3D1_HANDOFF.md` and the partial reconstruction. If continuing,
+first obtain reliable natural block-order instrumentation; do not infer missing blocks or
+rename TEXT `$5D04`.
+readiness-by: session:01a1de4d-e170-7336-8945-d268adc65944
+readiness-at: 2026-11-15T08:33:16.093Z
+readiness-checkpoint: g7-0f4e1ab3f156
 <!-- guard:end checkpoint -->
