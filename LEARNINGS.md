@@ -50,8 +50,10 @@
 - **GOAL.md schema fix (operator action required):** the guard's checkpoint validation
   requires headings `## Objective` and `## Acceptance criteria` in `GOAL.md`; the file
   currently has `## Acceptance` and no `## Objective`. This is a structural heading
-  rename only — no semantic change to the objective text. The agent cannot edit GOAL.md
-  (protected). The operator should apply this edit, then `handoff_finalize` can attest.
+  rename only — no semantic change to the objective text. The agent treats GOAL.md as
+  operator-owned (protected by project convention). PROGRESS.md headings `## Pending` /
+  `## Blockers` were also required and are now present (commit 61e4b8a). The operator
+  should apply the GOAL.md rename, then `handoff_finalize` can attest.
 - Keep P3-C3 bounded to the immediate natural output path from TEXT `$5D04` for the
   two accepted PRINT cases. Expand only when traces require it.
   (P3-C3 closed on this basis; superseded by completion.)
