@@ -1,10 +1,11 @@
+## Objective
 # Project goal
 
 Build a traceable historical reconstruction of GFA BASIC interpreters, runtimes and
 compilers, starting from preserved binaries and independently checked observations.
 Keep claims tied to exact artifacts; reconstruction is partial where evidence ends.
 
-## Acceptance
+## Acceptance criteria
 
 - Reproducible measurements and historical addresses accompany each claim.
 - Findings distinguish OBSERVED, INFERRED, HYPOTHESIS and UNMEASURED.
