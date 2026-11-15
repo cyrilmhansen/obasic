@@ -6,6 +6,7 @@
     "handoff": 10000,
     "closing": 5000
   },
+  "workingContextWindow": 160000
   "generationReserve": 5000,
   "safetyReserve": 0,
   "enforceClosing": true,

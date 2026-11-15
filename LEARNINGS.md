@@ -19,15 +19,42 @@
   `named.veto` labels can be false positives. Confirm control flow/data use independently.
 - **Trace attribution:** matching addresses or a nearby dispatcher event do not identify
   a handler. Bind a trace to exact accepted input and selected vector.
+- **P3-C3 natural target evidence (accepted, verified this session):** entry-stack return
+  word `$104F2` (TEXT+`$1BEE`) proves the natural `JSR (A0)` entry into `$14608`; the
+  512-byte target body is byte-identical across all captures and E/D (SHA-256
+  `078234b7…`) with a byte-exact reproducible rg-dis 0.11.46 listing; the natural output
+  boundary TEXT+`$5E36` (immediately after BIOS `TRAP #13` Bconout, dev=2) is reached in
+  all four output runs with the printed character (`$41`/`$33`) and return chain
+  `$11070→$14650→$104F2` in the stack capture; screens show `A`/`3` then `OK >` under E
+  and D. Dynamic instruction order inside the body remains UNMEASURED; the target is not
+  named. Evidence: `analysis/gfa/NATURAL_EXECUTION_36_C3.md`, its DATA JSON.
 
-## Falsified / corrected
+## Falsified or superseded
 
 - The first `PRINT "A"` keyboard attempt yielded `PRINT 3A3` because host X11 symbols,
   Hatari mapping and guest TOS layout were conflated. Scancode mode plus calibrated
+  physical-key events now captures the exact quotes (`22`); deliberate wrong-key tests
+  confirm calibration catches errors; buffer bytes, not key events, are the acceptance
+  oracle. Evidence: `NATURAL_EXECUTION_36_C2.md`.
+- **Single-step of the natural target body (P3-C3):** both methods (`:once :file` entry
+  chain and plain `:once` + FIFO commands) failed: Hatari 2.6.1 resumed emulation after
+  the `:file` chain and the guest completed the PRINT before the first `hatari-debug c 1`
+  (guest `A`/`OK >` echoed in the debugger log; VBL 485→557/619; `cpureg` shows ROM-idle
+  loop at `$E00DB8`, A7 supervisor). The 149-step PC lists are the idle interpreter loop,
+  NOT the target body. Do not treat them as execution evidence.
   physical-key events now captures the exact quotes (`22`); deliberate wrong-key tests
   confirm calibration catches errors. Evidence: `NATURAL_EXECUTION_36_C2.md`.
 
 ## Proposed
 
+- **GOAL.md schema fix (operator action required):** the guard's checkpoint validation
+  requires headings `## Objective` and `## Acceptance criteria` in `GOAL.md`; the file
+  currently has `## Acceptance` and no `## Objective`. This is a structural heading
+  rename only — no semantic change to the objective text. The agent cannot edit GOAL.md
+  (protected). The operator should apply this edit, then `handoff_finalize` can attest.
 - Keep P3-C3 bounded to the immediate natural output path from TEXT `$5D04` for the
   two accepted PRINT cases. Expand only when traces require it.
+  (P3-C3 closed on this basis; superseded by completion.)
+- **proposed:** to recover ordered execution without dropping into the interactive
+  debugger, chain per-instruction `:trace :once :file` breakpoints, or use read
+  watchpoints on body format fields during natural continuation.

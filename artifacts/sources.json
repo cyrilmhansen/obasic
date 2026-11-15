@@ -3,22 +3,32 @@
   "description": "Historical leads only; sources are not automatically licensed for redistribution. Direct download URLs and SHA-256 values must be verified before pinning.",
   "artifacts": [
     {
-      "id": "tbxl-1.5-interpreter",
+      "id": "tbxl-1.5-full",
       "target": "tbxl-1.5",
-      "role": "interpreter",
+      "role": "full suite",
       "description": "Turbo-BASIC XL v1.5 Atari 8-bit original executable or floppy image",
       "catalog_url": "https://www.atariwiki.org/wiki/Wiki.jsp?page=Turbo-BASIC+XL",
-      "url": null,
+      "url": "https://web.archive.org/web/20260513194144/https://atariwiki.org/wiki/attach/Turbo-BASIC%20XL/TURBO-BASIC_XL_1.5_full.atr",
       "sha256": null,
       "notes": "6502. For reconstruction, separately inspect the upstream dmsc/turbo-dis MADS source."
     },
     {
-      "id": "tbxl-1.1-compiler",
+      "id": "tbxl-suite-sources",
       "target": "tbxl-1.5",
-      "role": "compiler",
-      "description": "Turbo-BASIC XL compiler v1.1, exact release to verify",
+      "role": "full suite sources",
+      "description": "Turbo-BASIC XL, exact release to verify",
       "catalog_url": "https://www.atariwiki.org/wiki/Wiki.jsp?page=Turbo-BASIC+XL",
-      "url": null,
+      "url": "https://web.archive.org/web/20260513194144/https://atariwiki.org/wiki/attach/Turbo-BASIC%20XL/TBXL_DSDD_DOS_XE.atr",
+      "sha256": null,
+      "notes": "Do not infer the compiler version from the interpreter image."
+    },
+    {
+      "id": "tbxl-interpreter-sources-disasm",
+      "target": "tbxl-1.5",
+      "role": "full suite sources",
+      "description": "Turbo-BASIC XL sources mads source, exact release to verify",
+      "catalog_url": "https://www.atariwiki.org/wiki/Wiki.jsp?page=Turbo-BASIC+XL",
+      "url": "https://web.archive.org/web/20260513194144/https://atariwiki.org/wiki/attach/Turbo-BASIC%20XL/tb1_5-mads.asm",
       "sha256": null,
       "notes": "Do not infer the compiler version from the interpreter image."
     },
@@ -28,7 +38,7 @@
       "role": "distribution",
       "description": "GFA BASIC 1.0 original Atari ST disk image (1985 GFA Systemtechnik edition)",
       "catalog_url": "https://www.atarimania.com/games/atari-st-utilities-gfa-basic-38892",
-      "url": null,
+      "url": "https://www.atarimania.com/st/dumps/gfa_basic_gfa_systemtechnik.zip",
       "sha256": null,
       "notes": "Commercial edition; inspect disk to identify interpreter and any additional tools."
     },
@@ -38,7 +48,7 @@
       "role": "distribution",
       "description": "GFA BASIC 2.02 Atari ST distribution disk image",
       "catalog_url": "https://www.atariuptodate.de/en/progs/gfabasic",
-      "url": null,
+      "url": "https://archive.org/download/Atari_ST_TOSEC_2012_04_23/Atari_ST_TOSEC_2012_04_23.zip/Atari%20ST%20%5BTOSEC%5D%2FApplications%2F%5BST%5D%2FAtari%20ST%20-%20Applications%20-%20%5BST%5D%20%28TOSEC-v2011-08-31_CM%29%2FGFA%20Basic%20v2.02%20%281987-09-15%29%28GFA%20Systemtechnik%29.zip",
       "sha256": null,
       "notes": "The precise disk-image release must be established; the catalog is not a direct binary URL."
     },
@@ -58,7 +68,7 @@
       "role": "interpreter",
       "description": "GFA BASIC 3.02 interpreter, exact edition and packaging to establish",
       "catalog_url": "https://www.atariuptodate.de/en/progs/gfabasic",
-      "url": null,
+      "url": "https://archive.org/download/Atari_ST_TOSEC_2012_04_23/Atari_ST_TOSEC_2012_04_23.zip/Atari%20ST%20%5BTOSEC%5D%2FApplications%2F%5BST%5D%2FAtari%20ST%20-%20Applications%20-%20%5BST%5D%20%28TOSEC-v2011-08-31_CM%29%2FGFA%20Basic%20v3.02%20%2819xx%29%28GFA%20Systemtechnik%29.zip",
       "sha256": null,
       "notes": "Catalog lead only; do not relabel GFA 3.0 or 3.03 as 3.02."
     },
@@ -68,7 +78,7 @@
       "role": "interpreter",
       "description": "GFA BASIC 3.60 interpreter, exact edition and packaging to establish",
       "catalog_url": "https://www.atariuptodate.de/en/progs/gfabasic",
-      "url": null,
+      "url": "https://archive.org/download/Atari_ST_TOSEC_2012_04_23/Atari_ST_TOSEC_2012_04_23.zip/Atari%20ST%20%5BTOSEC%5D%2FApplications%2F%5BST%5D%2FAtari%20ST%20-%20Applications%20-%20%5BST%5D%20%28TOSEC-v2011-08-31_CM%29%2FGFA%20Basic%20v3.6%20%281991-05-06%29%28GFA%20Systemtechnik%29.zip",
       "sha256": null,
       "notes": "Catalog lead only; 3.60 interpreter must not be conflated with 3.6TT or compiler 3.60."
     },
@@ -78,7 +88,7 @@
       "role": "distribution",
       "description": "GFA BASIC 3.6TT original Atari ST disk image",
       "catalog_url": "https://www.atarimania.com/games/atari-st-utilities-gfa-basic-43829",
-      "url": null,
+      "url": "https://www.atarimania.com/st/dumps/gfa_basic_3_6tt_gfa_systemtechnik.zip",
       "sha256": null,
       "notes": "Commercial edition; inspect disk contents before assigning interpreter/compiler roles."
     },
@@ -111,6 +121,60 @@
       "url": null,
       "sha256": null,
       "notes": "Inventory lead only; do not infer a compiler version from the interpreter."
+    },
+    {
+      "id": "gbe4-current-zip",
+      "target": "gfa-4",
+      "role": "ide",
+      "description": "GFA reborn ?",
+      "catalog_url": "https://gfabasic.net/",
+      "url": "https://gfabasic.net/files/gbe.zip",
+      "sha256": null,
+      "notes": "Inventory lead only; do not infer a compiler version from the interpreter."
+    },
+    {
+      "id": "tos-1.62-ste-fr",
+      "target": "tos-rom",
+      "role": "TOS ROM",
+      "description": "Atari TOS v1.62, STE, French, Revision 2 ROM archive",
+      "catalog_url": null,
+      "url": "https://dl.emu-land.net/roms/atari_st/tos/[IMG]/TOS%20v1.62%20%281990%29%28Atari%20Corp%29%28STE%29%28FR%29%5BSTE%20TOS%2C%20Rev%202%5D.zip",
+      "sha256": "956be04e269c6941cc9cba98b79af063759ee5b54ffd0e79dcf542e985c21e1d",
+      "notes": "User-provided acquisition URL. ZIP hash is pinned after download and archive inspection. Do not commit or redistribute ROM contents. Inner ROM member is 262,145 bytes (one byte over 256 KiB); preserve as supplied and investigate before Hatari use.",
+      "size": 109868
+    },
+    {
+      "id": "tos-1.06-ste-fr",
+      "target": "tos-rom",
+      "role": "TOS ROM",
+      "description": "Atari TOS v1.06, STE, French, Revision 1 ROM archive",
+      "catalog_url": null,
+      "url": "https://dl.emu-land.net/roms/atari_st/tos/[IMG]/TOS%20v1.06%20%281989%29%28Atari%20Corp%29%28STE%29%28FR%29%5BSTE%20TOS%2C%20Rev%201%5D.zip",
+      "sha256": "9b72b2f7389e33566dfadd07e406f68094855a3d0b039af031f61ba6dc78c1bf",
+      "notes": "User-provided acquisition URL. ZIP hash is pinned after download and archive inspection. Do not commit or redistribute ROM contents.",
+      "size": 109712
+    },
+    {
+      "id": "tos-1.04-mega-st-fr",
+      "target": "tos-rom",
+      "role": "TOS ROM",
+      "description": "Atari TOS v1.04, Mega ST, French (Rainbow TOS) ROM archive",
+      "catalog_url": null,
+      "url": "https://dl.emu-land.net/roms/atari_st/tos/[IMG]/TOS%20v1.04%20%281989%29%28Atari%20Corp%29%28Mega%20ST%29%28FR%29%5BRainbow%20TOS%5D.zip",
+      "sha256": "f607da31a96c2f30082fd8fb484472aa9d510dc8183abe2975717b0a98d69538",
+      "notes": "User-provided acquisition URL. ZIP hash is pinned after download and archive inspection. Do not commit or redistribute ROM contents.",
+      "size": 108146
+    },
+    {
+      "id": "tos-3.06-tt-gb",
+      "target": "tos-rom",
+      "role": "TOS ROM",
+      "description": "Atari TOS v3.06, TT, Great Britain ROM archive",
+      "catalog_url": null,
+      "url": "https://dl.emu-land.net/roms/atari_st/tos/[IMG]/TOS%20v3.06%20%281991%29%28Atari%20Corp%29%28TT%29%28GB%29.zip",
+      "sha256": "9c7c36e00242c7ac210554ed84044b32a54ac393c4302525305a3b633fada930",
+      "notes": "User-provided acquisition URL. ZIP hash is pinned after download and archive inspection. Do not commit or redistribute ROM contents.",
+      "size": 140091
     }
   ]
 }
